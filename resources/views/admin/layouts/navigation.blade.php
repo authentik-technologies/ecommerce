@@ -2,7 +2,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset('adminbackend/assets/images/logo-dark.png') }}" width="100%" alt="logo icon">
+            <img src="{{ asset('admin/assets/images/logo-dark.png') }}" width="100%" alt="logo icon">
         </div>
         <div>
             <h4 class="logo-text">eCommerce</h4>
@@ -18,29 +18,25 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+        <li class="menu-label">Shop settings</li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bx bx-category"></i>
+                <div class="parent-icon"><i class="bx bx-store"></i>
                 </div>
-                <div class="menu-title">Brands</div>
+                <div class="menu-title">Shop</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
+                <li> <a href="{{ route('admin.products.index') }}"><i class="bx bx-package"></i>Products</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>Chat Box</a>
+                <li> <a href="{{ route('admin.brands.index') }}"><i class="bx bx-bookmark"></i>Brands</a>
                 </li>
-                <li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>File Manager</a>
+                <li> <a href="{{ route('admin.categories.index') }}"><i class="bx bx-purchase-tag"></i>Categories</a>
                 </li>
-                <li> <a href="app-contact-list.html"><i class="bx bx-right-arrow-alt"></i>Contatcs</a>
-                </li>
-                <li> <a href="app-to-do.html"><i class="bx bx-right-arrow-alt"></i>Todo List</a>
-                </li>
-                <li> <a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i>Invoice</a>
-                </li>
-                <li> <a href="app-fullcalender.html"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
+                <li> <a href="{{ route('admin.subcategories.index') }}"><i class="bx bx-purchase-tag-alt"></i>Sub Categories</a>
                 </li>
             </ul>
         </li>
+
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">

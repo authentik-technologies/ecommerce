@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{ (!empty($adminData->photo)) ? url('adminbackend/upload/'.$adminData->photo):url('adminbackend/upload/no-image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-dark" width="120">
+                                <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_img'.$adminData->photo):url('upload/admin_img/no-image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-dark" width="120">
                                 <div class="mt-3">
                                     <h4>{{ $adminData->name }}</h4>
                                     <h6>{{ $adminData->role }}</h6>
@@ -97,7 +97,7 @@
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <img id="showImage" src="{{ (!empty($adminData->photo)) ? url('adminbackend/upload/'.$adminData->photo):url('adminbackend/upload/no-image.jpg') }}" alt="Admin" style="width:60px; height:60px;">
+                                    <img id="showImage" src="{{ (!empty($adminData->photo)) ? url('upload/admin_img'.$adminData->photo):url('upload/admin_img/no-image.jpg') }}" alt="Admin" style="width:60px; height:60px;">
                                 </div>
                             </div>
                             <div class="row">

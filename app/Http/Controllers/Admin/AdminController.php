@@ -36,9 +36,9 @@ class AdminController extends Controller
         
         if  ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('adminbackend/upload/'.$data->photo));
+            @unlink(public_path('upload/admin_img/'.$data->photo));
             $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('adminbackend/upload'),$filename);
+            $file->move(public_path('upload/admin_img/'),$filename);
             $data['photo'] = $filename;
         }
 
@@ -70,7 +70,7 @@ class AdminController extends Controller
             return back()->with("error", "L'ancien mot de passe n'est pas valide.");
         }
 
-        //Update Ne Password
+        //Update New Password
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);

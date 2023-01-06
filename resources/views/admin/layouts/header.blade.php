@@ -1,320 +1,350 @@
-<!-- header area start -->
-        <header>
-            <div class="header__area">
-                <div class="header__top black-bg d-none d-md-block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xxl-12">
-                                <div class="header__top-info text-center">
-                                    <ul>
-                                        <li>
-                                            <p>5% for all order in this week <a href="shop.html">Shop Now</a></p>
-                                        </li>
-                                        <li>
-                                            <p><a>Free delivery for all orders over <span>$200</span></a></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header__middle header__border d-none d-md-block">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-8">
-                                <div class="header__social">
-                                    <ul>
-                                        <li><a href="tel:1234-5678-90"><i class="fal fa-headphones"></i> (+80) 1234 5678 90</a></li>
-                                        <li><a href="mailto:info@company.com"><i class="fal fa-envelope"></i> info@company.com</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-4 col-md-4">
-                                <div class="header__middle-right d-flex align-items-center justify-content-end">
-                                    <div class="main-menu main-menu-border main-menu-4">
-                                        <nav id="mobile-menu">
-                                            <ul>
-                                                <li class="has-dropdown">
-                                                    <a href="index.html">Home</a>
-                                                    <ul class="submenu">
-                                                        <li>
-                                                            <a href="index.html">Home Style 1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-2.html">Home Style 2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index-3.html">Home Style 3</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="has-dropdown">
-                                                    <a href="shop.html">Shop</a>
-                                                    <ul class="submenu">
-                                                        <li>
-                                                            <a href="shop.html">Shop</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="shop-2.html">Shop 2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="product-details.html">Product Details</a>
-                                                        </li>   
-                                                    </ul>
-                                                </li>
-                                                <li class="has-dropdown">
-                                                    <a href="blog.html">Blog</a>
-                                                    <ul class="submenu">
-                                                        <li>
-                                                            <a href="blog.html">Blog</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="blog-details.html">Blog Details</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="has-dropdown">
-                                                    <a href="about.html">Pages</a>
-                                                    <ul class="submenu">
-                                                        <li>
-                                                            <a href="about.html">About Us</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="cart.html">Cart Page</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="checkout.html">Cheakout Page</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="wishlist.html">Wishlist Page</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="sign-in.html">Sign In</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="sign-up.html">Sign Up</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="contact.html">Contact Us</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <div class="header__select d-flex align-items-center">
-                                        <div class="header__lang header__select-item mr-15">
-                                            <select>
-                                                <option>EN</option>
-                                                <option>BN</option>
-                                                <option>IN</option>
-                                                <option>CH</option>
-                                                <option>AM</option>
-                                            </select>
-                                        </div>
-                                        <div class="header__currency header__select-item">
-                                            <select>
-                                                <option>USD</option>
-                                                <option>Euro</option>
-                                                <option>Yen</option>
-                                                <option>Rupee</option>
-                                                <option>Sterlin</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header__bottom">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-xxl-2 col-xl-2 col-lg-3 col-6">
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="assets/img/logo/logo.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-8 d-none d-lg-block">
-                                <div class="category__menu d-flex align-items-center">
-                                    <div class="category__btn mr-20">
-                                        <button class="cat-btn" type="button"><i class="far fa-bars"></i>All Categories</button>
-                                        <div class="side-submenu transition-3">
-                                            <nav>
-                                                <ul>
-                                                    <li class="has-dropdown">
-                                                        <a href="shop.html">
-                                                            <i class="fal fa-headphones"></i>
-                                                            All
-                                                        </a>
-                                                        <ul class="mega-menu" data-background="assets/img/bg/mega-bg.jpg">
-                                                            <li><a href="shop.html">Shop Pages</a>
-                                                                <ul class="mega-item">
-                                                                    <li><a href="shop.html">Standard SHop Page</a></li>
-                                                                    <li><a href="shop.html">Shop Right Sidebar</a></li>
-                                                                    <li><a href="shop.html">Shop Left Sidebar</a></li>
-                                                                    <li><a href="shop.html">Shop 3 Column</a></li>
-                                                                    <li><a href="shop.html">Shop 4 Column</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="shop.html">Product Pages</a>
-                                                                <ul class="mega-item">
-                                                                    <li><a href="product-details.html">Product Details</a></li>
-                                                                    <li><a href="product-details.html">Product V2</a></li>
-                                                                    <li><a href="product-details.html">Product V3</a></li>
-                                                                    <li><a href="product-details.html">Varriable Product</a></li>
-                                                                    <li><a href="product-details.html">External Product</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="about.html">Other Pages</a>
-                                                                <ul class="mega-item">
-                                                                    <li><a href="wishlist.html">wishlist</a></li>
-                                                                    <li><a href="cart.html">Shopping Cart</a></li>
-                                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                                    <li><a href="contact.html">Login</a></li>
-                                                                    <li><a href="contact.html">Register</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="shop.html">Phone & Tablets</a>
-                                                                <ul class="mega-item">
-                                                                    <li><a href="shop.html">Catagory 1</a></li>
-                                                                    <li><a href="shop.html">Catagory 2</a></li>
-                                                                    <li><a href="shop.html">Catagory 3</a></li>
-                                                                    <li><a href="shop.html">Catagory 4</a></li>
-                                                                </ul>
-                                                            </li>
-                                                            <li><a href="shop.html">Phone & Tablets</a>
-                                                                <ul class="mega-item">
-                                                                    <li><a href="shop.html">Catagory 1</a></li>
-                                                                    <li><a href="shop.html">Catagory 2</a></li>
-                                                                    <li><a href="shop.html">Catagory 3</a></li>
-                                                                    <li><a href="shop.html">Catagory 4</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="has-dropdown">
-                                                        <a href="shop.html">
-                                                            <i class="fal fa-alarm-clock"></i>
-                                                            Rugby
-                                                        </a>
-                                                        <ul class="submenu">
-                                                            <li><a href="index.html">Home Electronics</a></li>
-                                                            <li><a href="index-2.html">Home Furniture</a></li>
-                                                            <li><a href="index-3.html">Home Fashion</a></li>
-                                                            <li><a href="index.html">Home Organic</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html"><i class="fal fa-tv"></i>Bowlling</a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-gamepad-alt"></i>
-                                                        Baseball
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-tshirt"></i>
-                                                        Footwear
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-camera"></i>
-                                                        Football
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-home"></i>
-                                                        Cyling
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-baby-carriage"></i>
-                                                        Tennis
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-axe"></i>
-                                                        Clothing
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="product-details.html">
-                                                        <i class="fal fa-truck"></i>
-                                                        Swimming
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="product-details.html">Wooden</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Chair</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Tables</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Kitchen</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-details.html">Others</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <div class="col-xxl-4 col-xl-4 col-lg-1 col-6">
-                                <div class="header__bottom-right-wrapper d-flex justify-content-end align-items-center">
-                                    <div class="header__bottom-right d-none d-xl-flex align-items-center justify-content-end">
-                                        <div class="header__search">
-                                            <form action="#">
-                                                <div class="header__search-input">
-                                                    <input type="text" placeholder="Search anything..">
-                                                    <button type="submit"><i class="far fa-search"></i></button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="header__action ml-30">
-                                            <ul>
-                                                <li>
-                                                    <a href="sign-in.html"><i class="fal fa-user-circle"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#cartMiniModal">
-                                                        <i class="fal fa-shopping-basket"></i>
-                                                        <span class="cart-count">3</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="header-bar ml-20 d-xl-none">
-                                        <button type="button" class="header-bar-btn" data-bs-toggle="modal" data-bs-target="#offCanvasModal">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<header>
+    <div class="topbar d-flex align-items-center">
+        <nav class="navbar navbar-expand">
+            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+            </div>
+            <div class="search-bar flex-grow-1">
+                <div class="position-relative search-bar-box">
+                    <input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
+                    <span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
                 </div>
             </div>
-        </header>
-        <!-- header area end -->
+            <div class="top-menu ms-auto">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item mobile-search-icon">
+                        <a class="nav-link" href="#">	<i class='bx bx-search'></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-large">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <div class="row row-cols-3 g-3 p-3">
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
+                                    </div>
+                                    <div class="app-title">Teams</div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
+                                    </div>
+                                    <div class="app-title">Projects</div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
+                                    </div>
+                                    <div class="app-title">Tasks</div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
+                                    </div>
+                                    <div class="app-title">Feeds</div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
+                                    </div>
+                                    <div class="app-title">Files</div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
+                                    </div>
+                                    <div class="app-title">Alerts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown dropdown-large">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
+                            <i class='bx bx-bell'></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a href="javascript:;">
+                                <div class="msg-header">
+                                    <p class="msg-header-title">Notifications</p>
+                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
+                                </div>
+                            </a>
+                            <div class="header-notifications-list">
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-primary text-primary"><i class="bx bx-group"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
+                                        ago</span></h6>
+                                            <p class="msg-info">5 new user registered</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-danger text-danger"><i class="bx bx-cart-alt"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+                                        ago</span></h6>
+                                            <p class="msg-info">You have recived new orders</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-success text-success"><i class="bx bx-file"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
+                                        ago</span></h6>
+                                            <p class="msg-info">The pdf files generated</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
+                                        ago</span></h6>
+                                            <p class="msg-info">5.1 min avarage time response</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-info text-info"><i class="bx bx-home-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">New Product Approved <span
+                                        class="msg-time float-end">2 hrs ago</span></h6>
+                                            <p class="msg-info">Your new product has approved</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-danger text-danger"><i class="bx bx-message-detail"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">New customer comments recived</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-success text-success"><i class='bx bx-check-square'></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">Successfully shipped your item</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-primary text-primary"><i class='bx bx-user-pin'></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
+                                        ago</span></h6>
+                                            <p class="msg-info">24 new authors joined last week</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="notify bg-light-warning text-warning"><i class='bx bx-door-open'></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
+                                        ago</span></h6>
+                                            <p class="msg-info">45% less alerts last 4 weeks</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <a href="javascript:;">
+                                <div class="text-center msg-footer">View All Notifications</div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown dropdown-large">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
+                            <i class='bx bx-comment'></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a href="javascript:;">
+                                <div class="msg-header">
+                                    <p class="msg-header-title">Messages</p>
+                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
+                                </div>
+                            </a>
+                            <div class="header-message-list">
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
+                                        ago</span></h6>
+                                            <p class="msg-info">The standard chunk of lorem</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
+                                        sec ago</span></h6>
+                                            <p class="msg-info">Many desktop publishing packages</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
+                                        ago</span></h6>
+                                            <p class="msg-info">Various versions have evolved over</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
+                                        min ago</span></h6>
+                                            <p class="msg-info">Making this the first true generator</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
+                                        ago</span></h6>
+                                            <p class="msg-info">Duis aute irure dolor in reprehenderit</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">The passage is attributed to an unknown</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">The point of using Lorem</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">It was popularised in the 1960s</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
+                                        ago</span></h6>
+                                            <p class="msg-info">Various versions have evolved over</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
+                                        ago</span></h6>
+                                            <p class="msg-info">If you are going to use a passage</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-online">
+                                            <img src="assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
+                                        ago</span></h6>
+                                            <p class="msg-info">All the Lorem Ipsum generators</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <a href="javascript:;">
+                                <div class="text-center msg-footer">View All Messages</div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="user-box dropdown">
+                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_img/'.$adminData->photo):url('upload/admin_img/no-image.jpg') }}" class="user-img" alt="user avatar">
+                    <div class="user-info ps-3">
+                        <p class="user-name mb-0">{{ Auth::user()->name }}</p>
+                        <p class="designattion mb-0">{{ Auth::user()->role }}</p>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="bx bx-user"></i><span>Profile</span></a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.profile.password') }}"><i class="bx bx-lock"></i><span>Mot de Passe</span></a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider mb-0"></div>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('admin.logout') }}"><i class='bx bx-log-out-circle'></i><span>Déconnexion</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>

@@ -10,6 +10,7 @@ use App\Models\Categories;
 use App\Models\SubCategories;
 use App\Models\MultiImage;
 use Image;
+use Carbon\Carbon;
 
 class ProductsController extends Controller
 {
@@ -19,9 +20,91 @@ class ProductsController extends Controller
     }
 
     public function AddProducts(){
-        $brands = Brands::orderBy('brand_name','ASC')->get();
-        $categories = Categories::orderBy('category_name','ASC')->get();
+    
+        $brands =  Brands::latest()->get();
+        $categories = Categories::latest()->get();
         
-        return view('admin.products.add',compact('brands'),compact('categories'));
+        return view('admin.products.add',compact('brands','categories'));
+    }
+
+    public function SaveProducts(Request $request){
+
+        $image = $request->file('product_thumbnail');
+        $name_generate = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(800,800)->save('upload/product_img/thumbnail'.$name_generate);
+        $save_url = 'upload/product_img/thumbnail'.$name_generate;
+
+        $product_id = Products::insertGetId([
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'product_name' => $request->product_name,
+            'product_slug' => strtolower(str_replace(' ', '-',$request->product_name)),
+
+            'product_sku' => $request->product_sku,
+            'product_qty' => $request->product_qty,
+            'product_tags' => $request->product_tags,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
+
+            'product_short_description' => $request->product_short_description,
+            'product_long_description' => $request->product_long_description,
+            'product_notes' => $request->product_notes,
+
+            'product_price' => $request->product_price,
+            'product_cost' => $request->product_cost,
+            'product_discount' => $request->product_discount,
+            'product_tax' => $request->product_tax,
+
+            'product_status' => $request->product_status,
+            'product_length' => $request->product_length,
+            'product_width' => $request->product_width,
+            'product_height' => $request->product_height,
+            'product_weight' => $request->product_weight,
+            'product_measurement' => $request->product_measurement,
+            
+            'special_deal' => $request->special_deal,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+            'product_thumbnail' => $save_url,
+
+            'created_at' => Carbon::now(),
+        ]);
+
+        // Multiple Image Upload
+
+        $images = $request->file('multi_images');
+        foreach($images as $img){
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(800,800)->save('upload/product_img/multi_img'.$make_name);
+            $uploadPath = 'upload/product_img/multi_img'.$make_name;
+            
+            MultiImage::insert([
+
+                'product_id' => $product_id,
+                'image_name' => $uploadPath,
+                'created_at' => Carbon::now(),
+
+            ]);
+        } // End For Each
+    
+        $notification = array(
+            'message' => 'Produit ajouté avec succès',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->route('admin.products.index')->with($notification);
+    }
+
+    public function EditProducts($id){
+
+        $brands =  Brands::latest()->get();
+        $categories = Categories::latest()->get();
+        $subcategories = SubCategories::latest()->get();
+        $products = Products::findOrFail($id);
+        
+        return view('admin.products.edit',compact('brands','categories','subcategories','products'));
+
     }
 }

@@ -4,86 +4,273 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <div class="page-content">
-    <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Edit Category</div>
-    </div>
-    <!--end breadcrumb-->
-    <div class="container">
-        <div class="main-body">
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="card">
-                        <div class="card-body">
-                        
-                        <form id="myForm" method="post" action="{{ route('admin.categories.update') }}" enctype="multipart/form-data">
-                        @csrf
+    <div class="card">
+        <div class="card-body p-4">
+            <h5 class="card-title">Edit Product</h5>
+            
+        <form id="myForm" method="post" action="{{ route('admin.products.save') }}" enctype="multipart/form-data">
+            @csrf
 
-                        <input type="hidden" name="id" value="{{ $categories->id }}"/>
-                        <input type="hidden" name="old_image" class="form-control" value="{{ $categories->category_image }}"/>
+            <div class="form-body mt-4">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="border border-3 p-4 rounded">
+                            <div class="form-group mb-3">
+                                <label for="inputProductTitle" class="form-label">Name</label>
+                                <input type="text" class="form-control" name="product_name" value="{{ $products->product_name }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tags</label>
+                                    <input type="text" name="product_tags" class="form-control" data-role="tagsinput" value="{{ $products->product_tags }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Size</label>
+                                    <input type="text" name="product_size" class="form-control" data-role="tagsinput" value="{{ $products->product_size }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Color</label>
+                                    <input type="text" name="product_color" class="form-control" value="{{ $products->product_color }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Short Description</label>
+                                    <textarea class="form-control" name="product_short_description" rows="2" value="{{ $products->product_short_description }}"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Long Description</label>
+                                    <textarea id="mytextarea" name="product_long_description" value="{!! $products->product_long_description !!}"></textarea> 
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Main Product Image</label>
+                                    <input type="file" class="form-control" name="product_thumbnail" id="formFile" onchange="mainThumbUrl(this)">
+                                    <img src="" id="mainThumb" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Product Images</label>
+                                    <input type="file" class="form-control" name="multi_images[]" multiple="">
+                                    <div class="row" id="previewImg"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Notes</label>
+                                    <textarea class="form-control" name="product_notes" value="{{ $products->product_notes }}" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div> <!-- END BORDER -->
 
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Name</h6>
+                        <div class="col-lg-4">
+                            <div class="border border-3 p-4 rounded">
+                                <div class="row g-3">
+                                    <h6 class="row-title">Product Information</h6>
+                                    <span class="col-title">Product Brand</span>
+                                    <div class="col-md-12">
+                                        <select class="form-select mb-3" name="brand_id" aria-label="Product Brand">
+                                            <option value="{{ $products->brand_id }}">{{ $products->brand_name }}</option>
+                                            @foreach($brands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                        <span class="col-title">Product pricing</span>
+                                        <div class="col-md-3"> 
+                                            <label class="form-label">Price</label>
+                                            <input type="text" class="form-control" name="product_price" value="{{ $products->product_price }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Cost</label>
+                                            <input type="text" class="form-control" name="product_cost" value="{{ $products->product_cost }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Discount</label>
+                                            <input type="text" class="form-control"  name="product_discount" value="{{ $products->product_discount }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label  class="form-label">Taxes</label>
+                                            <select class="form-select" name="product_tax" >
+                                                <option value="{{ $products->product_tax }}">{{ $products->product_tax }}</option>
+                                                <option value="14.975">TPS/TVQ</option>
+                                                <option value="5">TPS</option>
+                                                <option value="9.975">TVQ</option>
+                                                <option value="0">Zéro</option>
+                                            </select>
+                                        </div>
+                                        <span class="col-title">Product Dimensions</span>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Length</label>
+                                            <input type="text" name="product_length" class="form-control"  value="{{ $products->product_length }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Width</label>
+                                            <input type="text" name="product_width" class="form-control"  value="{{ $products->product_width }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Height</label>
+                                            <input type="text" name="product_height" class="form-control"  value="{{ $products->product_height }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Weigth</label>
+                                            <input type="text" name="product_weight" class="form-control"  value="{{ $products->product_weight }}">
+                                        </div>
+                                        <span class="col-title">Product Details</span>
+                                        <div class="col-md-5">
+                                            <label class="form-label">SKU</label>
+                                            <input type="text" name="product_sku" class="form-control"  value="{{ $products->product_sku }}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">QTY</label>
+                                            <input type="text" name="product_qty" class="form-control"  value="{{ $products->product_qty }}">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Product Status</label>
+                                            <select class="form-select" name="product_status">
+                                                <option value="1">active</option>
+                                                <option value="2">inactive </option>
+                                                <option value="3">out of stock</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Product Measurement</label>
+                                            <select class="form-select" name="product_measurement">
+                                                <option value="{{ $products->product_measurement }}">{{ $products->product_measurement }}</option>
+                                                <option value="each">each</option>
+                                                <option value="pi²">pi²</option>
+                                                <option value="box">box</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Product Category</label>
+                                            <select class="form-select" name="category_id">
+                                                @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Product SubCategory</label>
+                                            <select class="form-select" name="subcategory_id">
+                                                @foreach($subcategories as $subcategory)
+                                                <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="special_deal" value="{{ $products->special_deal }}">
+                                                <label class="form-check-label">Hot Deal</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="featured" value="{{ $products->featured }}">
+                                                <label class="form-check-label">Featured</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="special_offer" value="{{ $products->special_offer }}">
+                                                <label class="form-check-label">Special Offer</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <input type="submit" class="btn btn-primary" value="Sauvegarder"/>
+                                            </div>
+                                        </div>
+                                    </div> 
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <input type="text" name="category_name" class="form-control" value="{{ $categories->category_name }}"/>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Image</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="file" name="category_image" class="form-control" id="image" />
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0"></h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <img id="showImage" src="{{ asset($categories->category_image) }}" alt="Category" style="width:60px; height:60px;">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="submit" class="btn btn-primary px-4" value="Sauvegarder" />
-                                </div>
-                            </div>
+                            </div><!-- END BORDER -->
                         </div>
-                        </form>
                     </div>
-                </div>
+                </div><!--end row-->
             </div>
+        </form><!--end form-->
         </div>
     </div>
 </div>
 
+<!-- Script for Main Thumbnail Image view upon upload -->
+
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#image').change(function(e){
+    function mainThumbUrl(input){
+        if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e){
-                $('#showImage').attr('src',e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-    });
+                $('#mainThumb').attr('src',e.target.result).width(100).height(80);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
+
+<!-- script for Multi Image view upon Upload -->
+
+<script type="text/javascript"> 
+
+$(document).ready(function(){
+$('#formFileMultiple').on('change', function(){ //on file input change
+    if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+    {
+        var data = $(this)[0].files; //this file data
+        
+        $.each(data, function(index, file){ //loop though each file
+            if(/(\.|\/)(jpe?g|png|webp)$/i.test(file.type)){ //check supported file type
+                var fRead = new FileReader(); //new filereader
+                fRead.onload = (function(file){ //trigger function on successful read
+                return function(e) {
+                    var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                .height(80); //create image element 
+                    $('#previewImg').append(img); //append image to output element
+                };
+                })(file);
+                fRead.readAsDataURL(file); //URL representing the file's data.
+            }
+        });
+        
+    }else{
+        alert("Your browser doesn't support File API!"); //if File API is absent
+    }
+});
+});
+
+</script>
+
+<!-- script for displaying subcategories related to the categories -->
+
+<script>
+
+$(document).ready(function(){
+$('select[name=category_id]').on('change', function(){
+    var category_id = $(this).val();
+    if (category_id) {
+        $.ajax({
+            url: "{{ url('/admin/subcategories/ajax') }}/"+category_id,
+            type: "GET",
+            dataType:"json",
+            success:function(data){
+                $('select[name="subcategory_id"]').html('');
+                var d =$('select[name="subcategory_id"]').empty();
+                $.each(data, function(key, value){
+                    $('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
+                    });
+                },
+            });
+        }
+    });
+});
+
+</script>
+
+<!-- script for required fields -->
 
 <script type="text/javascript">
     $(document).ready(function(){
         $('#myForm').validate({
             rules: {
-                category_name: {
+                product_name: {
                     required : true,
                 },
             },
             messages: {
-                category_name: {
-                    required : 'Inscrire le nom de la Category',
+                product_name: {
+                    required : 'Inscrire le nom du produit',
                 },
             },
             errorElement: 'span',
@@ -100,7 +287,6 @@
         });
     });
 </script>
-
 
 
 

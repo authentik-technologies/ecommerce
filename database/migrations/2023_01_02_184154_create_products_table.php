@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('brand_id');
-            $table->integer('category_id');
-            $table->integer('subcategory_id');
+            $table->integer('brand_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('subcategory_id')->nullable();
             $table->string('product_name');
             $table->string('product_slug');
             $table->string('product_sku')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('product_size')->nullable();
             $table->string('product_price')->nullable();
             $table->string('product_cost')->nullable();
+            $table->string('product_tax')->nullable();
             $table->string('product_discount')->nullable();
             $table->string('product_coverage')->nullable();
             $table->string('product_weight')->nullable();
@@ -37,8 +38,8 @@ return new class extends Migration
             $table->text('product_short_description')->nullable();
             $table->text('product_long_description')->nullable();
             $table->string('product_thumbnail')->nullable();
-            $table->enum('product_measurement',['each','pi²','box'])->default('each');
-            $table->enum('product_status',['active','inactive','out of stock'])->default('active');
+            $table->enum('product_measurement',['each','pi²','box'])->default('each')->nullable();
+            $table->enum('product_status',['active','inactive','out of stock'])->default('active')->nullable();
             $table->string('featured')->nullable();
             $table->string('special_offer')->nullable();
             $table->string('special_deal')->nullable();

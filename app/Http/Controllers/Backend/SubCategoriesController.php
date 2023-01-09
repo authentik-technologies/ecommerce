@@ -43,9 +43,9 @@ class SubCategoriesController extends Controller
 
     public function UpdateSubCategories(Request $request){
 
-        $subcategory_id = $request->id;
+        $subcat_id = $request->id;
 
-        SubCategories::findOrFail($subcategory_id)->update([
+        SubCategories::findOrFail($subcat_id)->update([
             'category_id' => $request->category_id,
             'subcategory_name' => $request->subcategory_name,
             'subcategory_slug' => strtolower(str_replace(' ', '-',$request->subcategory_name)),
@@ -68,5 +68,10 @@ class SubCategoriesController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('admin.subcategories.index')->with($notification);
+    }
+
+    public function GetSubCategories($subcategory_id){
+        $subcat = SubCategories::where('category_id',$category_id)->orderBy('subcategory_name','ASC')->get();
+        return json_encode($subcat);
     }
 }

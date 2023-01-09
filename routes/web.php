@@ -30,18 +30,6 @@ Route::get('/', function () {
     return view('shop.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-
 // SHOP FRONTEND  //
 
 Route::get('/a-propos', function () {
@@ -125,7 +113,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/categories' , 'AllCategories')->name('admin.categories.index');
         Route::get('/admin/categories/add' , 'AddCategories')->name('admin.categories.add');
         Route::post('/admin/categories/save' , 'SaveCategories')->name('admin.categories.save');
-        Route::get('/admin/Categories/edit/{id}' , 'EditCategories')->name('admin.categories.edit');
+        Route::get('/admin/categories/edit/{id}' , 'EditCategories')->name('admin.categories.edit');
         Route::post('/admin/categories/update' , 'UpdateCategories')->name('admin.categories.update');
         Route::get('/admin/categories/delete/{id}' , 'DeleteCategories')->name('admin.categories.delete');
         
@@ -142,9 +130,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/subcategories' , 'AllSubCategories')->name('admin.subcategories.index');
         Route::get('/admin/subcategories/add' , 'AddSubCategories')->name('admin.subcategories.add');
         Route::post('/admin/subcategories/save' , 'SaveSubCategories')->name('admin.subcategories.save');
-        Route::get('/admin/subCategories/edit/{id}' , 'EditSubCategories')->name('admin.subcategories.edit');
+        Route::get('/admin/subcategories/edit/{id}' , 'EditSubCategories')->name('admin.subcategories.edit');
         Route::post('/admin/subcategories/update' , 'UpdateSubCategories')->name('admin.subcategories.update');
         Route::get('/admin/subcategories/delete/{id}' , 'DeleteSubCategories')->name('admin.subcategories.delete');
+        Route::get('/admin/subcategories/ajax/{category_id}' , 'GetSubCategories');
         
     });
 
@@ -160,7 +149,17 @@ Route::middleware(['auth','role:vendor'])->group(function(){
 
 // CLIENT DASHBOARD //
 
+Route::get('/dashboard', function () {
+    return view('shop.account.dashboard');
+})->middleware(['auth','role:user','verified'])->name('account.dashboard');
 
+Route::middleware('auth','role:user')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 
 

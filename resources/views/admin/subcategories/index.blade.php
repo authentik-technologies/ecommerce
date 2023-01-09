@@ -29,10 +29,9 @@
                             <td>{{ $item['categories']['category_name'] }}</td>
                             <td>{{ $item->subcategory_name }}</td>
                             <td> 
-                            <a href="{{ route('admin.subcategories.edit',$item->id) }}" class="btn btn-info">Edit</a>
-                            <a href="{{ route('admin.subcategories.delete',$item->id) }}" class="btn btn-danger" id="delete">Delete</a> 
+                            <a href="{{ route('admin.subcategories.edit',$item->id) }}" class="btn btn-info" id="edit" title="Modifier l'entrée"><i class="bx bx-edit"></i></a>
+                            <a href="{{ route('admin.subcategories.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Supprimer l'entrée"><i class="bx bx-trash"></i></a>    
                             </td>
-                      
                         </tr>
                         @endforeach
                     </tbody>

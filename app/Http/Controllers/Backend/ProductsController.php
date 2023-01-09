@@ -107,4 +107,54 @@ class ProductsController extends Controller
         return view('admin.products.edit',compact('brands','categories','subcategories','products'));
 
     }
+
+    public function UpdateProducts(Request $request){
+
+        $product_id = $request->id;
+
+        Products::findOrFail($product_id)->update([
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'product_name' => $request->product_name,
+            'product_slug' => strtolower(str_replace(' ', '-',$request->product_name)),
+
+            'product_sku' => $request->product_sku,
+            'product_qty' => $request->product_qty,
+            'product_tags' => $request->product_tags,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
+
+            'product_short_description' => $request->product_short_description,
+            'product_long_description' => $request->product_long_description,
+            'product_notes' => $request->product_notes,
+
+            'product_price' => $request->product_price,
+            'product_cost' => $request->product_cost,
+            'product_discount' => $request->product_discount,
+            'product_tax' => $request->product_tax,
+
+            'product_status' => $request->product_status,
+            'product_length' => $request->product_length,
+            'product_width' => $request->product_width,
+            'product_height' => $request->product_height,
+            'product_weight' => $request->product_weight,
+            'product_measurement' => $request->product_measurement,
+            
+            'special_deal' => $request->special_deal,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Produit mise à jour avec succès',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.products.index')->with($notification);
+
+    }
 }

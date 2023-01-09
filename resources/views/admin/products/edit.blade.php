@@ -8,8 +8,10 @@
         <div class="card-body p-4">
             <h5 class="card-title">Edit Product</h5>
             
-        <form id="myForm" method="post" action="{{ route('admin.products.save') }}" enctype="multipart/form-data">
+        <form id="myForm" method="post" action="{{ route('admin.products.update') }}" enctype="multipart/form-data">
             @csrf
+
+            <input type="hidden" name="id" value="{{ $products->id }}">
 
             <div class="form-body mt-4">
                 <div class="row">
@@ -29,7 +31,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Color</label>
-                                    <input type="text" name="product_color" class="form-control" value="{{ $products->product_color }}">
+                                    <input type="text" name="product_color" class="form-control" data-role="tagsinput" value="{{ $products->product_color }}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Short Description</label>
@@ -39,7 +41,7 @@
                                     <label class="form-label">Long Description</label>
                                     <textarea id="mytextarea" name="product_long_description" value="{!! $products->product_long_description !!}"></textarea> 
                                 </div>
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label class="form-label">Main Product Image</label>
                                     <input type="file" class="form-control" name="product_thumbnail" id="formFile" onchange="mainThumbUrl(this)">
                                     <img src="" id="mainThumb" />
@@ -48,7 +50,7 @@
                                     <label class="form-label">Product Images</label>
                                     <input type="file" class="form-control" name="multi_images[]" multiple="">
                                     <div class="row" id="previewImg"></div>
-                                </div>
+                                </div> -->
                                 <div class="mb-3">
                                     <label class="form-label">Notes</label>
                                     <textarea class="form-control" name="product_notes" value="{{ $products->product_notes }}" rows="2"></textarea>
@@ -63,9 +65,9 @@
                                     <span class="col-title">Product Brand</span>
                                     <div class="col-md-12">
                                         <select class="form-select mb-3" name="brand_id" aria-label="Product Brand">
-                                            <option value="{{ $products->brand_id }}">{{ $products->brand_name }}</option>
+                                            <option></option>
                                             @foreach($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                            <option value="{{ $brand->id }}" {{ $brand->id == $products->brand_id  ? 'selected' : '' }}>{{ $brand->brand_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -138,34 +140,36 @@
                                         <div class="col-12">
                                             <label class="form-label">Product Category</label>
                                             <select class="form-select" name="category_id">
+                                                <option></option>
                                                 @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $products->category_id  ? 'selected' : '' }}>{{ $category->category_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label">Product SubCategory</label>
                                             <select class="form-select" name="subcategory_id">
+                                                <option></option>
                                                 @foreach($subcategories as $subcategory)
-                                                <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                                <option value="{{ $subcategory->id }}" {{ $subcategory->id == $products->subcategory_id  ? 'selected' : '' }}>{{ $subcategory->subcategory_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="special_deal" value="{{ $products->special_deal }}">
+                                                <input class="form-check-input" type="checkbox" name="special_deal"  {{ $products->special_deal == 'on' ? 'checked' : '' }}>
                                                 <label class="form-check-label">Hot Deal</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="featured" value="{{ $products->featured }}">
+                                                <input class="form-check-input" type="checkbox" name="featured"  {{ $products->featured == 'on' ? 'checked' : '' }}>
                                                 <label class="form-check-label">Featured</label>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="special_offer" value="{{ $products->special_offer }}">
+                                                <input class="form-check-input" type="checkbox" name="special_offer"  {{ $products->special_offer == 'on' ? 'checked' : '' }}>
                                                 <label class="form-check-label">Special Offer</label>
                                             </div>
                                         </div>

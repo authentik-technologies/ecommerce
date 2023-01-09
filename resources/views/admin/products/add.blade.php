@@ -21,15 +21,16 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Tags</label>
-                                    <input type="text" name="product_tags" class="form-control" data-role="tagsinput" value="hardwood,ceramic,vinyl,carpet">
+                                    <input type="text" name="product_tags" class="form-control" data-role="tagsinput" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Size</label>
-                                    <input type="text" name="product_size" class="form-control" data-role="tagsinput" value="12x12,12x24,12x36,24x24,24x36">
+                                    <input type="text" name="product_size" class="form-control" data-role="tagsinput" value="">
                                 </div>
+                                
                                 <div class="mb-3">
                                     <label class="form-label">Color</label>
-                                    <input type="text" name="product_color" class="form-control">
+                                    <input type="text" name="product_color" class="form-control" data-role="tagsinput" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Short Description</label>
@@ -89,10 +90,9 @@
                                             <label  class="form-label">Taxes</label>
                                             <select class="form-select" name="product_tax">
                                                 <option></option>
-                                                <option value="14.975">TPS/TVQ</option>
-                                                <option value="5">TPS</option>
-                                                <option value="9.975">TVQ</option>
-                                                <option value="0">Zéro</option>
+                                                <option value="14.975">14.975%</option>
+                                                <option value="5">5%</option>
+                                                <option value="9.975">9.975%</option>
                                             </select>
                                         </div>
                                         <span class="col-title">Product Dimensions</span>

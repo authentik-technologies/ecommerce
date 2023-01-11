@@ -47,9 +47,7 @@
 		<!--end header -->
 
 		<!--start page wrapper -->
-		<div class="page-wrapper">
-			@yield('admin')
-		</div>
+		@yield('admin')
 		<!--end page wrapper -->
 		
 		<!--start overlay-->

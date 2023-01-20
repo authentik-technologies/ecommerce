@@ -113,15 +113,15 @@
 
         /// Start product view with Modal 
         function quickView(id){
-        alert(id)
+        // alert(id)
 
-            /* $.ajax({
+            $.ajax({
             type: 'GET',
             url: '/product/view/modal/'+id,
             dataType: 'json',
             success: function(data) {
-            // console.log(data)
-
+            console.log(data)
+/*
                 $('#pname').text(data.product.product_name);
                 $('#pprice').text(data.product.product_price);
                 $('#pcategory').text(data.product.categories.category_name);
@@ -136,9 +136,9 @@
                 }else{
                     $('#pprice').text(data.product.product_discount);
                     $('#oldprice').text(data.product.product_price); 
-                } // end else
+                } // end else */
             }
-            }); */ 
+            }); 
         }
     </script>
 

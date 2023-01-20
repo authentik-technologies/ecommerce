@@ -1107,12 +1107,12 @@
 	font-weight: 700;
 	line-height: 1;
 	&.in-stock {
-		background: $background-3;
-		color: $color-brand;
+		background: #DEF9EC;
+		color: #3BB77E;
 	}
 	&.out-stock {
 		color: $color-hot;
-		background: #fde0e9;
+		background: $color-brand;
 	}
 
 }

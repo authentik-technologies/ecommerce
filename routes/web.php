@@ -8,6 +8,13 @@ use App\Http\Controllers\Backend\BrandsController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\SubCategoriesController;
 use App\Http\Controllers\Backend\ProductsController;
+use App\Http\Controllers\Backend\SlidersController;
+use App\Http\Controllers\Backend\BannersController;
+
+use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\UserController;
+
+use App\http\Middleware\RedirectIfAuthenticated;
 
 
 
@@ -25,31 +32,65 @@ use App\Http\Controllers\Backend\ProductsController;
 */
 
 
-// SHOP INDEX/HOME ROOT PAGE  //
-Route::get('/', function () {
+// SHOP INDEX/HOME ROOT PAGE
+Route::get('/', function() {
     return view('shop.index');
 });
 
-// SHOP FRONTEND  //
-
-Route::get('/a-propos', function () {
+// SHOP FRONTEND
+Route::get('/a-propos', function() {
     return view('shop.about-us');
 });
 
-Route::get('/contactez-nous', function () {
+Route::get('/contactez-nous', function() {
     return view('shop.contact-us');
 });
 
-Route::get('/boutique', function () {
-    return view('shop.boutique');
+Route::get('/boutique', function() {
+    return view('shop.products.index');
+});
+
+// SHOP FRONTEND SLIDER ROUTES
+
+// PRODUCT DETAILS ROUTE
+Route::get('/produits/details/{id}/{slug}' , [ShopController::class, 'ProductDetails']);
+Route::get('/produits/categories/{id}/{slug}' , [ShopController::class, 'CategoryDetails']);
+
+// PRODUCT MODAL VIEW
+Route::get('/product/view/modal/{id}' , [ShopController::class, 'ProductModalAjax']);
+
+
+
+Route::controller(SlidersController::class)->group(function() {
+
+    // SLIDER ROUTES
+    Route::get('/admin/sliders' , 'AllSliders')->name('admin.sliders.index');
+    Route::get('/admin/sliders/add' , 'AddSliders')->name('admin.sliders.add');
+    Route::post('/admin/sliders/save' , 'SaveSliders')->name('admin.sliders.save');
+    Route::get('/admin/sliders/edit/{id}' , 'EditSliders')->name('admin.sliders.edit');
+    Route::post('/admin/sliders/update' , 'UpdateSliders')->name('admin.sliders.update');
+    Route::get('/admin/sliders/delete/{id}' , 'DeleteSliders')->name('admin.sliders.delete');
+    
+});
+
+Route::controller(BannersController::class)->group(function() {
+
+    // SLIDER ROUTES
+    Route::get('/admin/banners' , 'AllBanners')->name('admin.banners.index');
+    Route::get('/admin/banners/add' , 'AddBanners')->name('admin.banners.add');
+    Route::post('/admin/banners/save' , 'SaveBanners')->name('admin.banners.save');
+    Route::get('/admin/banners/edit/{id}' , 'EditBanners')->name('admin.banners.edit');
+    Route::post('/admin/banners/update' , 'UpdateBanners')->name('admin.banners.update');
+    Route::get('/admin/banners/delete/{id}' , 'DeleteBanners')->name('admin.banners.delete');
+    
 });
 
 
 // ADMIN DASHBOARD //
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
 
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:admin'])->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->
     name('admin.dashboard');
 
@@ -71,7 +112,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
 
 // BACKEND PRODUCTS FUNCTIONS //
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::controller(ProductsController::class)->group(function(){
 
@@ -82,13 +123,22 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/admin/products/edit/{id}' , 'EditProducts')->name('admin.products.edit');
         Route::post('/admin/products/update' , 'UpdateProducts')->name('admin.products.update');
         Route::get('/admin/products/delete/{id}' , 'DeleteProducts')->name('admin.products.delete');
+        Route::post('/admin/products/update/thumbnail' , 'UpdateProductsThumbnail')->name('admin.products.update.thumbnail');
+        Route::post('/admin/products/update/thumbnails' , 'UpdateProductsThumbnails')->name('admin.products.update.thumbnails');
+        Route::post('/admin/products/add/thumbnails' , 'AddThumbnails')->name('admin.products.add.thumbnails');
+        Route::get('/admin/products/delete/thumbnails/{id}' , 'DeleteProductsThumbnails')->name('admin.products.delete.thumbnails');
+
+
+        Route::get('/admin/products/active/{id}' , 'ActiveProducts')->name('admin.products.active');
+        Route::get('/admin/products/inactive/{id}' , 'InactiveProducts')->name('admin.products.inactive');
+
         
     });
 
 });
 
 // BACKEND BRANDS FUNCTIONS //
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::controller(BrandsController::class)->group(function(){
 
@@ -105,7 +155,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 });
 
 // BACKEND CATEGORIES FUNCTIONS //
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::controller(CategoriesController::class)->group(function(){
 
@@ -122,7 +172,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 });
 
 // BACKEND SUB-CATEGORIES FUNCTIONS //
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:admin'])->group(function() {
 
     Route::controller(SubCategoriesController::class)->group(function(){
 
@@ -141,22 +191,20 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
 // VENDOR DASHBOARD //
 
-Route::middleware(['auth','role:vendor'])->group(function(){
-    Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->
-    name('vendor.dashboard');
-});
-
 
 // CLIENT DASHBOARD //
 
-Route::get('/dashboard', function () {
-    return view('shop.account.dashboard');
-})->middleware(['auth','role:user','verified'])->name('account.dashboard');
+Route::middleware(['auth'])->group(function() {
+    
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('shop.account.dashboard');
+    Route::post('/dashboard/profile/save', [UserController::class, 'UserProfileSave'])->name('user.profile.save');
+    Route::post('/dashboard/profile/password/save', [UserController::class, 'UserPasswordSave'])->name('user.password.save');
+    Route::post('/dashboard/profile/shipping/update', [UserController::class, 'UserShippingUpdate'])->name('user.shipping.update');
+    Route::post('/dashboard/profile/billing/update', [UserController::class, 'UserBillingUpdate'])->name('user.billing.update');
 
-Route::middleware('auth','role:user')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard/logout', [UserController::class, 'UserLogout'])->name('shop.account.logout');
+
+    
 });
 
 require __DIR__.'/auth.php';

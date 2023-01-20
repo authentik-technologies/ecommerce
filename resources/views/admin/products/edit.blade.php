@@ -36,11 +36,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Short Description</label>
-                                        <textarea class="form-control" name="product_short_description" rows="2" value="{{ $products->product_short_description }}"></textarea>
+                                        <textarea class="form-control" name="product_short_description" rows="2" value="{{ $products->product_short_description }}">{{ $products->product_short_description }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Long Description</label>
-                                        <textarea id="mytextarea" name="product_long_description" value="{!! $products->product_long_description !!}"></textarea> 
+                                        <textarea id="mytextarea" name="product_long_description" value="{{ $products->product_long_description }}">{{ $products->product_long_description }}</textarea> 
                                     </div>
                                     <!-- <div class="mb-3">
                                         <label class="form-label">Main Product Image</label>
@@ -192,32 +192,79 @@
         <div class="page-content">
             <div class="card">
                     <div class="card-body">
-                        <form id="myForm" method="post" action="{{ route('admin.products.update') }}" enctype="multipart/form-data">
+                        <h5 class="card-title">Update Product Thumbnail</h5>
+                        <hr>
+                        <form method="post" action="{{ route('admin.products.update.thumbnail') }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $products->id }}"/>
+                            <input type="hidden" name="old_image" value="{{ $products->product_thumbnail }}"/>
+
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Default file input example</label>
-                                <input class="form-control" type="file" id="formFile">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple="">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFileDisabled" class="form-label">Disabled file input example</label>
-                                <input class="form-control" type="file" id="formFileDisabled" disabled="">
+                                <label for="formFile" class="form-label"></label>
+                                <input class="form-control" type="file" id="formFile" name="product_thumbnail">
                             </div>
                             <div class="mb-3">
-                                <label for="formFileSm" class="form-label">Small file input example</label>
-                                <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                <label for="formFile" class="form-label"></label>
+                                <img src="{{ asset($products->product_thumbnail) }}" style="width:100px; height:100px;">
                             </div>
-                            <div>
-                                <label for="formFileLg" class="form-label">Large file input example</label>
-                                <input class="form-control form-control-lg" id="formFileLg" type="file">
-                            </div>
+                            <input type="submit" class="btn btn-primary" value="Sauvegarder"/>
                         </form>
                     </div>
+<!--
+                    <div class="card-body">
+                        <h5 class="card-title">Add Product Images</h5>
+                        <hr>
+                        <form method="post" action="{{ route('admin.products.add.thumbnails') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label">Product Images</label>
+                                <input type="file" class="form-control" name="multi_images[]" id="formFileMultiple" multiple="">
+                                <div class="row" id="previewImg"> 
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Ajouter"/>
+                        </form>
+                    </div> -->
+
+                    <div class="card-body">
+                        <h5 class="card-title">Update Product Images</h5>
+                        <hr>
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form method="post" action="{{ route('admin.products.update.thumbnails') }}" enctype="multipart/form-data">
+                                    @csrf
+                                        @foreach($multi_images as $key => $image)
+                                        <tr>
+                                            <th scope="=row">{{ $key+1 }}</th>
+                                            <td> <img src="{{ asset($image->image_name) }}" style="width:70; height: 40px;"></td>
+                                            <td> <input type="file" class="form-group" name="multi_images[ {{ $image->id }} ]"> </td>
+                                            <td> 
+                                                <input type="submit" class="btn btn-primary" value="Mettre à jour"/>
+                                                <a href="{{ route('admin.products.delete.thumbnails',$image->id) }}" id="delete" class="btn btn-danger"><i class="bx bx-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                </form>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        
+
+        
+
     </div>
 </div>
 

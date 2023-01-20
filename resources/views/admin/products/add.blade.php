@@ -35,11 +35,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Short Description</label>
-                                        <textarea class="form-control" id="inputProductDescription" name="product_short_description" rows="2"></textarea>
+                                        <textarea class="form-control" name="product_short_description" rows="2"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Long Description</label>
-                                        <textarea id="mytextarea" name="product_long_description">Hello, World!</textarea> 
+                                        <textarea id="mytextarea" name="product_long_description"></textarea> 
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Notes</label>
@@ -53,9 +53,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Product Images</label>
                                         <input type="file" class="form-control" name="multi_images[]" id="formFileMultiple" multiple="">
-                                        <div class="row" id="previewImg">
-
-                                            
+                                        <div class="row" id="previewImg"> 
                                         </div>
                                     </div>
                                     

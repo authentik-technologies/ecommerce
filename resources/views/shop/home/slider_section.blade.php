@@ -1,37 +1,52 @@
 <!--Start hero slider-->
-<section class="home-slider position-relative mb-30">
+
+@php  
+    $slider = App\Models\Slider::orderBy('title', 'ASC')->get();
+    $banner = App\Models\Banner::where('side_banner', 'on')->get();
+@endphp
+
+<section class="home-slider style-2 position-relative mb-50">
     <div class="container">
-        <div class="home-slide-cover mt-30">
-            <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
-                <div class="single-hero-slider single-animation-wrap" style="background-image: url(shop/assets/imgs/slider/slider-1.png)">
-                    <div class="slider-content">
-                        <h1 class="display-2 mb-40">
-                            Don’t miss amazing<br />
-                            grocery deals
-                        </h1>
-                        <p class="mb-65">Sign up for the daily newsletter</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
-                            <button class="btn" type="submit">Subscribe</button>
-                        </form>
+        <div class="row">
+            <div class="col-xl-8 col-lg-12">
+                <div class="home-slide-cover">
+                    <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
+                        @foreach ($slider as $item )
+                        <div class="single-hero-slider single-animation-wrap" style="background-image:  url({{ asset($item->image) }})">
+                            <div class="slider-content">
+                                <h1 class="display-2 mb-40" style="color:rgb(255, 255, 255)">
+                                    {{ $item->title }}
+                                </h1>
+                                <p class="mb-65" style="color:rgb(255, 255, 255)">{{ $item->short_title }}</p>
+                                <form class="form-subcriber d-flex">
+                                    <input type="email" placeholder="Your emaill address" />
+                                    <button class="btn" type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-                </div>
-                <div class="single-hero-slider single-animation-wrap" style="background-image: url(shop/assets/imgs/slider/slider-2.png)">
-                    <div class="slider-content">
-                        <h1 class="display-2 mb-40">
-                            Fresh Vegetables<br />
-                            Big discount
-                        </h1>
-                        <p class="mb-65">Save up to 50% off on your first order</p>
-                        <form class="form-subcriber d-flex">
-                            <input type="email" placeholder="Your emaill address" />
-                            <button class="btn" type="submit">Subscribe</button>
-                        </form>
-                    </div>
+                    <div class="slider-arrow hero-slider-1-arrow"></div>
                 </div>
             </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
+            @foreach ($banner as $item )
+                @if ($item->side_banner == 'on')
+                <div class="col-lg-4 d-none d-xl-block">
+                    <div class="banner-img img animated animated">
+                        <img src="{{ asset($item->image) }}" alt="" style="height:538px; width: 100%; background"/>
+                        <div class="banner-text" >
+                            <h4 style="color:rgb(255, 255, 255)">
+                                {{ $item->title }}
+                            </h4>
+                            <a href="{{ asset($item->url) }}" class="btn btn-xs">Voir plus <i class="fi-rs-arrow-small-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @else
+                @endif
+            @endforeach
         </div>
     </div>
 </section>
+
 <!--End hero slider-->

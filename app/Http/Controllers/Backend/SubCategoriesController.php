@@ -65,7 +65,7 @@ class SubCategoriesController extends Controller
 
         $notification = array(
             'message' => 'Supprimé avec succès',
-            'alert-type' => 'success'
+            'alert-type' => 'warning'
         );
         return redirect()->route('admin.subcategories.index')->with($notification);
     }

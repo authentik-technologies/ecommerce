@@ -1,52 +1,61 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('shop.layouts.master')
+@section('shop')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Accueil</a>
+            <span></span> Mon compte
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
+</div>
+<div class="page-content pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="login_wrap widget-taber-content background-white">
+                            <div class="padding_eight_all bg-white">
+                                <div class="heading_s1">
+                                    <h1 class="mb-5">Inscription - <br> Création de compte</h1>
+                                    <p class="mb-30">Vous avez déjà un compte ? <a href="{{ route('login') }}">S'indentifier</a></p>
+                                </div>
+                                <form method="post" action="{{ route('register') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="text" required="" id="name" name="name" placeholder="Nom Complet" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" required="" id="email" name="email" placeholder="Courriel" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" required="" id="password" name="password" placeholder="Mot de passe" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" required="" id="password_confirmation" name="password_confirmation" placeholder="Confirmer mot de passe" />
+                                    </div>
+                                    <div class="login_footer form-group mb-50">
+                                        <div class="chek-form">
+                                            <div class="custome-checkbox">
+                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
+                                                <label class="form-check-label" for="exampleCheckbox12"><span>J'accepte les conditions et la politique.</span></label>
+                                            </div>
+                                        </div>
+                                        <a class="text-muted" href="#">En savoir plus</a>
+                                    </div>
+                                    <div class="form-group mb-30">
+                                        <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">S'inscrire</button>
+                                    </div>
+                                    <p class="font-xs text-muted"><strong>Note: </strong>Vos données personnelles seront utilisées pour faciliter votre expérience sur ce site web, pour gérer l'accès à votre compte et à d'autres fins décrites dans notre politique de confidentialité.</p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>
+@endsection

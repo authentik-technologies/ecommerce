@@ -101,7 +101,7 @@ class BrandsController extends Controller
 
         $notification = array(
             'message' => 'Supprimé avec succès',
-            'alert-type' => 'success'
+            'alert-type' => 'warning'
         );
 
         return redirect()->route('admin.brands.index')->with($notification);

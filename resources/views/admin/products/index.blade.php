@@ -57,13 +57,13 @@
                                 </td>
                                 <td>
                                 <a href="{{ route('admin.products.edit',$item->id) }}" class="btn btn-info" id="edit" title="Modifier l'entrée"><i class="bx bx-edit"></i></a>
-                                <a href="#" class="btn btn-danger" id="delete" title="Supprimer l'entrée"><i class="bx bx-trash"></i></a>
-                                <a href="#" class="btn btn-secondary" id="delete" title="Voir le produit en détail"><i class="bx bx-detail"></i></a>
+                                <a href="{{ route('admin.products.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Supprimer l'entrée"><i class="bx bx-trash"></i></a>
+                                <a href="#" class="btn btn-secondary" title="Voir le produit en détail"><i class="bx bx-detail"></i></a>
 
                                 @if($item->product_status == 'active')
-                                <a href="#" class="btn btn-warning" id="delete" title="Présentement ACTIF - Rendre le produit inactif"><i class="bx bx-dislike"></i></a>
+                                <a href="{{ route('admin.products.inactive',$item->id) }}" class="btn btn-warning" id="inactive" title="Présentement ACTIF - Rendre le produit inactif"><i class="bx bx-dislike"></i></a>
                                 @else
-                                <a href="#" class="btn btn-success" id="delete" title="Présentement INACTIF/OUT OF STOCK - Rendre le produit actif"><i class="bx bx-like"></i></a>
+                                <a href="{{ route('admin.products.active',$item->id) }}" class="btn btn-success" id="active" title="Présentement INACTIF/OUT OF STOCK - Rendre le produit actif"><i class="bx bx-like"></i></a>
                                 @endif
                                 </td>
                             </tr>

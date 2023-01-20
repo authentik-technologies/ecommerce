@@ -36,7 +36,19 @@
                 </li>
             </ul>
         </li>
-
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-bookmark-heart"></i>
+                </div>
+                <div class="menu-title">Components</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.sliders.index') }}"><i class="bx bx-slideshow"></i>Sliders</a>
+                </li>
+                <li> <a href="{{ route('admin.banners.index') }}"><i class="bx bx-flag"></i>Banners</a>
+                </li>
+            </ul>
+        </li>
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">

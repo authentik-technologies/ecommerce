@@ -25,12 +25,12 @@
                             <span class="stock-status in-stock" id="in-stock"></span>
                             <span class="stock-status out-stock" id="out-stock"></span>
                             
-                            <h4 class="title-detail"><a href=" " class="text-heading" id="name"></a></h4>
+                            <h4 class="title-detail"><a href=" " class="text-heading" id="pname"></a></h4>
                             <div class="clearfix product-price-cover">
                                 <div class="product-price primary-color float-left">
                                     <span class="current-price text-brand" id="pprice"></span>
                                     <span>
-                                        <span class="save-price font-md color3 ml-15" id="discount"></span>
+                                        <span class="save-price font-md color3 ml-15" id="pdiscount"></span>
                                         <span class="old-price font-md ml-15" id="oldprice"></span>
                                     </span>
                                 </div>
@@ -42,6 +42,7 @@
                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                 </div>
                                 <div class="product-extra-link2">
+                                    <input type="hidden" id="product_id">
                                     <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart" onclick="addToCart()"></i>Ajouter au Panier</button>
                                 </div>
                             </div>
@@ -49,7 +50,7 @@
                                 <ul>
                                     <h6 class="mb-5">Fabriqué par: <span class="text-brand" id="pbrand"></span></h6>
                                     <hr>
-                                    <li class="mb-5">Categorie: <span class="text-brand" id="category"></span></li>
+                                    <li class="mb-5">Categorie: <span class="text-brand" id="pcategory"></span></li>
                                 </ul>
                             </div>
                         </div>

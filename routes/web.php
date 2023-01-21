@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SlidersController;
 use App\Http\Controllers\Backend\BannersController;
 
 use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\UserController;
 
 use App\http\Middleware\RedirectIfAuthenticated;

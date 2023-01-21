@@ -23,10 +23,6 @@
     <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
-    <!--leaflet map-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     
 </head>
 
@@ -47,6 +43,17 @@
 
         <!--Footer-->
 		@include('shop.layouts.footer')
+
+        <!-- Preloader Start -->
+        <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="text-center">
+                        <img src="asset{{ ('shop/assets/imgs/theme/loading.gif') }}" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Preloader End -->
 
         <!-- Vendor JS-->
         <script src="{{ asset('shop/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
@@ -71,10 +78,11 @@
         <script src="{{ asset('shop/assets/js/plugins/leaflet.js') }}"></script>
 
         <!-- Template  JS -->
-        <script src="{{ asset('shop/assets/js/main.js?v=5.6') }}"></script>
-        <script src="{{ asset('shop/assets/js/shop.js?v=5.6') }}"></script>
+        <script src="{{ asset('shop/assets/js/main.js?v=5.3') }}"></script>
+        <script src="{{ asset('shop/assets/js/shop.js?v=5.3') }}"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
@@ -109,7 +117,7 @@
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
-        });
+        })
 
         /// Start product view with Modal 
         function quickView(id){
@@ -120,8 +128,8 @@
             url: '/product/view/modal/'+id,
             dataType: 'json',
             success: function(data) {
-            console.log(data)
-/*
+            // console.log(data)
+
                 $('#pname').text(data.product.product_name);
                 $('#pprice').text(data.product.product_price);
                 $('#pcategory').text(data.product.categories.category_name);
@@ -136,22 +144,12 @@
                 }else{
                     $('#pprice').text(data.product.product_discount);
                     $('#oldprice').text(data.product.product_price); 
-                } // end else */
+                } // end else
             }
-            }); 
+            })
         }
     </script>
 
-            <!-- Preloader Start -->
-            <div id="preloader-active">
-                <div class="preloader d-flex align-items-center justify-content-center">
-                    <div class="preloader-inner position-relative">
-                        <div class="text-center">
-                            <img src="shop/assets/imgs/theme/loading.gif" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- Preloader End -->
     </body>
 
 </html>

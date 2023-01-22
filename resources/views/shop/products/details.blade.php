@@ -32,7 +32,6 @@
                                 @foreach ($multiImages as $image )
                                 <div><img src="{{ asset($image->image_name) }}" alt="Image de produit - Plancher Laurentides" /></div>
                                 @endforeach
-                                
                             </div>
                         </div>
                         <!-- End Gallery -->
@@ -45,15 +44,7 @@
                             @else
                             <span class="stock-status out-stock"> Hors Stock </span>
                             @endif
-                            <h2 class="title-detail">{{ $product->product_name }}</h2>
-                           <!--  <div class="product-detail-rating">
-                                <div class="product-rate-cover text-end">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (32 reviews)</span> 
-                                </div>
-                            </div> -->
+                            <h2 class="title-detail" id="pname">{{ $product->product_name }}</h2>
                             <div class="clearfix product-price-cover">
                                 @php
                                 $amount = $product->product_price - $product->product_discount;
@@ -77,7 +68,7 @@
                             <div class="short-desc mb-30">
                                 <p class="font-lg">{{ $product->product_short_description }}</p>
                             </div>
-                            @if ($product->product_size == NULL)
+                             <!-- @if ($product->product_size == NULL)
 
                             @else
                             <div class="attr-detail attr-size mb-30">
@@ -101,16 +92,35 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            @endif
-                            
-                            <div class="detail-extralink mb-50">
+                            @endif -->
+                            <label for="quantity">
+                                <h6><i class="fi-rs-calculator"></i> Combien en avez-vous besoin?</h6>
+                            </label>
+                            <div class="detail-extralink mb-20">
                                 <div class="detail-qty border radius">
-                                    <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                    <input type="text" name="quantity" class="qty-val" value="1" min="1">
-                                    <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                    <input type="number" name="quantity" class="qty-val" id="qty" min="1" placeholder="Saisir la quantité">
+                                </div>         
+                                <div class="detail-measurement border radius">
+                                    <input class="qty-val" style="background-color: white" placeholder="{{ $product->product_measurement }}" disabled>
                                 </div>
+                            </div>
+                            <div class="short-desc mb-30" id="qty-text">
+                                <h6>Combien en avez-vous besoin?</h6>
+                            </div>
+                            <div class="detail-extralink">
+                                <div class="product-extra-link2 mb-20">
+                                    <input type="hidden" id="product_id" value="{{ $product->id }}">
+                                    <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i class="fi-rs-shopping-cart"></i>Ajouter au panier</button>
+                                </div>
+                            </div>
+                            <div class="detail-extralink mb-50">
                                 <div class="product-extra-link2">
-                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Ajouter au panier</button>
+                                    <button type="submit" class="button button-add-to-cart" style="margin-top:0px ;background-color: white; border: 1px solid rgb(233, 1, 1); color: black"><i class="fi-rs-dollar"></i>Obtenez un devis</button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="detail-extralink mb-50">
+                                <div class="product-extra-link2">
                                     <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                 </div>
@@ -148,13 +158,11 @@
                                         @foreach ( $product_tag as $tag )
                                         @if ($tag == NULL)
                                         @else
-                                        <a rel="tag">{{ $tag }}  |  </a>
+                                        <a rel="tag">{{ $tag }} | </a>
                                         @endif
                                         
                                         @endforeach
                                     </li>
-                                    
-                                    <li>Stock:<span class="in-stock text-brand ml-5">{{ $product->product_qty }} En stock</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -457,3 +465,4 @@
 </div>
 
 @endsection
+

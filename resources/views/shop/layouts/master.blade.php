@@ -1,14 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
    
 <head>
     <meta charset="utf-8" />
     <title>Plancher Laurentides</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
-
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -23,16 +21,12 @@
     <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
+
 </head>
 
-    <body>
-        <!--Modal-->
-
-        <!--Quick View-->
-		@include('shop.layouts.quickview')
-		<!--end quickview -->
-
+<body>
+        
         <!--Header-->
 		@include('shop.layouts.header')
 
@@ -49,7 +43,7 @@
             <div class="preloader d-flex align-items-center justify-content-center">
                 <div class="preloader-inner position-relative">
                     <div class="text-center">
-                        <img src="asset{{ ('shop/assets/imgs/theme/loading.gif') }}" alt="" />
+                        <img src="{{ asset('shop/assets/imgs/theme/loading.gif') }}" alt="PL" />
                     </div>
                 </div>
             </div>
@@ -81,75 +75,93 @@
         <script src="{{ asset('shop/assets/js/main.js?v=5.3') }}"></script>
         <script src="{{ asset('shop/assets/js/shop.js?v=5.3') }}"></script>
 
+       
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
+        <script>
+            @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break; 
+            }
+            @endif
+        </script>
+        
+        <!-- Add to Cart Script -->
+        <script>
 
-    <script>
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','info') }}"
-        switch(type){
-        case 'info':
-        toastr.info(" {{ Session::get('message') }} ");
-        break;
-    
-        case 'success':
-        toastr.success(" {{ Session::get('message') }} ");
-        break;
-    
-        case 'warning':
-        toastr.warning(" {{ Session::get('message') }} ");
-        break;
-    
-        case 'error':
-        toastr.error(" {{ Session::get('message') }} ");
-        break; 
-        }
-        @endif 
-    </script>
-
-    <!-- Quick View Script-->
-    <script type="text/javascript">
+            $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            // Add to cart function
+            function addToCart(){
+        
+                // alert()
+        
+                var product_name = $('#pname').text();
+                var id = $('#product_id').val();
+                var product_qty = $('#qty').val();
+        
+                $.ajax({
+                    type: "POST",
+                    dataType: 'JSON',
+                    url: "/produits/details/add/"+id,
+                    data:{
+                        product_qty:product_qty, product_name:product_name, 
+                    },
+                    success:function(data){
+                        // miniCart();
             
-        $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                        console.log(data)
+        
+                        // Start Message 
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success', 
+                            showConfirmButton: false,
+                            timer: 3000 
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                                
+                                Toast.fire({
+                                type: 'success',
+                                title: data.success, 
+                                })
+        
+                            }else{
+                            
+                            Toast.fire({
+                                    type: 'error',
+                                    title: data.error, 
+                                    })
+                                } // End Message 
+        
+                    }// End add to cart function
+                });
             }
-        })
+        </script>
 
-        /// Start product view with Modal 
-        function quickView(id){
-        // alert(id)
-
-            $.ajax({
-            type: 'GET',
-            url: '/product/view/modal/'+id,
-            dataType: 'json',
-            success: function(data) {
-            // console.log(data)
-
-                $('#pname').text(data.product.product_name);
-                $('#pprice').text(data.product.product_price);
-                $('#pcategory').text(data.product.categories.category_name);
-                $('#pbrand').text(data.product.brands.brand_name);
-                $('#pimage').attr('src','/'+data.product.product_thambnail );
-
-                // Product Price 
-                if (data.product.product_discount == null) {
-                    $('#pprice').text('');
-                    $('#oldprice').text('');
-                    $('#pprice').text(data.product.product_price);
-                }else{
-                    $('#pprice').text(data.product.product_discount);
-                    $('#oldprice').text(data.product.product_price); 
-                } // end else
-            }
-            })
-        }
-    </script>
-
-    </body>
+</body>
 
 </html>

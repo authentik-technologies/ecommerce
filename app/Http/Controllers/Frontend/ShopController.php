@@ -9,7 +9,7 @@ use App\Models\Brands;
 use App\Models\Categories;
 use App\Models\SubCategories;
 use App\Models\MultiImage;
-use ajax;
+use App\Models\User;
 
 class ShopController extends Controller
 {
@@ -56,12 +56,6 @@ class ShopController extends Controller
     public function ProductModalAjax($id){
 
         $product = Products::with('categories','brands')->findOrFail($id);
-
-        $size = $product->product_size;
-        $product_size = explode(',',$size);
-
-        $colors = $product->product_color;
-        $product_color = explode(',',$colors);
 
 
         return response::json(array(

@@ -67,7 +67,7 @@
                            
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
+                                    <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue">6</span>
                                 </a>
                                 <a href="shop-wishlist.html"><span class="lable">Favories</span></a>
@@ -82,23 +82,11 @@
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('shop/assets/imgs/shop/thumbnail-3.jpg') }}" /></a>
+                                                <a href="shop-product-right.html"><img alt="Plancher Laurentides" src="#" /></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
                                                 <h4><span>1 × </span>$800.00</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="shop/assets/imgs/shop/thumbnail-2.jpg" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
-                                                <h4><span>1 × </span>$3200.00</h4>
                                             </div>
                                             <div class="shopping-cart-delete">
                                                 <a href="#"><i class="fi-rs-cross-small"></i></a>
@@ -252,20 +240,20 @@
                 <div class="header-action-2">
                     <div class="header-action-icon-2">
                         <a href="shop-wishlist.html">
-                            <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
+                            <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
                             <span class="pro-count white">4</span>
                         </a>
                     </div>
                     <div class="header-action-icon-2">
                         <a class="mini-cart-icon" href="#">
-                            <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
+                            <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-cart.svg') }}" />
                             <span class="pro-count white">2</span>
                         </a>
                         <div class="cart-dropdown-wrap cart-dropdown-hm2">
                             <ul>
                                 <li>
                                     <div class="shopping-cart-img">
-                                        <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
+                                        <a href="shop-product-right.html"><img alt="Nest" src="#" /></a>
                                     </div>
                                     <div class="shopping-cart-title">
                                         <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
@@ -277,7 +265,7 @@
                                 </li>
                                 <li>
                                     <div class="shopping-cart-img">
-                                        <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-4.jpg" /></a>
+                                        <a href="shop-product-right.html"><img alt="Nest" src="#" /></a>
                                     </div>
                                     <div class="shopping-cart-title">
                                         <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
@@ -463,13 +451,9 @@
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
-                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+                <a href="#"><img src="{{ asset('shop/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
             </div>
-            <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+            <div class="site-copyright">Copyright 2022 © Plancher Laurentides</div>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 @extends('shop.layouts.master')
 @section('shop')
+
 <div class="page-header mt-30 mb-50">
     <div class="container">
         <div class="archive-header">
@@ -77,11 +78,6 @@
                                         <!-- <img class="hover-img" src="shop/assets/imgs/shop/product-1-2.jpg" alt="" /> -->
                                     </a>
                                 </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                                </div>
                                 @php
                                     $amount = $product->product_price - $product->product_discount;
                                     $discount = ($amount/$product->product_price) * 100;
@@ -113,7 +109,6 @@
                                     @endif
                                 </div>
                                 <div class="product-card-bottom">
-
                                     @if ($product->product_discount == NULL)
                                     <div class="product-price">
                                         <span>{{ $product->product_price }} $ / {{ $product->product_measurement }}</span>
@@ -124,10 +119,6 @@
                                         <span class="old-price">{{ $product->product_price }} $</span>
                                     </div>
                                     @endif
-                                    
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Ajouter </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

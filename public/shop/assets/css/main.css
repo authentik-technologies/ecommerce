@@ -5049,7 +5049,7 @@ table .product-thumbnail img {
 }
 
 .detail-qty {
-  max-width: 80px;
+  max-width: 140px;
   padding: 9px 20px;
   position: relative;
   width: 100%;
@@ -5107,7 +5107,19 @@ table .product-thumbnail img {
   color: #e90101;
   border-radius: 5px;
   padding: 11px 20px 11px 30px;
-  max-width: 90px;
+  max-width: 240px;
+}
+
+.detail-extralink .detail-measurement {
+  margin: 0 6px 15px 0;
+  background-color: #fff;
+  border: 2px solid #e90101 !important;
+  font-size: 16px;
+  font-weight: 700;
+  color: #e90101;
+  border-radius: 5px;
+  padding: 11px 20px 11px 30px;
+  max-width: 80px;
 }
 
 .stock-status {
@@ -5227,6 +5239,7 @@ table .product-thumbnail img {
   border: 0;
   height: 50px;
   line-height: 50px;
+  width: 300px;
   font-weight: 700;
   font-size: 16px;
   font-family: "Quicksand", sans-serif;

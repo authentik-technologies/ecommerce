@@ -63,6 +63,7 @@ class ProductsController extends Controller
             'product_height' => $request->product_height,
             'product_weight' => $request->product_weight,
             'product_measurement' => $request->product_measurement,
+            'product_coverage' => $request->product_coverage,
             
             'special_deal' => $request->special_deal,
             'featured' => $request->featured,
@@ -142,6 +143,7 @@ class ProductsController extends Controller
             'product_height' => $request->product_height,
             'product_weight' => $request->product_weight,
             'product_measurement' => $request->product_measurement,
+            'product_coverage' => $request->product_coverage,
             
             'special_deal' => $request->special_deal,
             'featured' => $request->featured,

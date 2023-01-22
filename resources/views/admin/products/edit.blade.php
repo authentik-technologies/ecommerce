@@ -121,6 +121,10 @@
                                                 <label class="form-label">QTY</label>
                                                 <input type="text" name="product_qty" class="form-control"  value="{{ $products->product_qty }}">
                                             </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Coverage</label>
+                                                <input type="text" name="product_coverage" class="form-control"  value="{{ $products->product_coverage }}">
+                                            </div>
                                             <div class="col-12">
                                                 <label class="form-label">Product Status</label>
                                                 <select class="form-select" name="product_status">

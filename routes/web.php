@@ -51,15 +51,16 @@ Route::get('/boutique', function() {
     return view('shop.products.index');
 });
 
-// SHOP FRONTEND SLIDER ROUTES
 
 // PRODUCT DETAILS ROUTE
 Route::get('/produits/details/{id}/{slug}' , [ShopController::class, 'ProductDetails']);
 Route::get('/produits/categories/{id}/{slug}' , [ShopController::class, 'CategoryDetails']);
 
-// PRODUCT MODAL VIEW
+// PRODUCT MODAL VIEW ROUTE
 Route::get('/product/view/modal/{id}' , [ShopController::class, 'ProductModalAjax']);
-
+// 
+// PRODUCT MODAL ADD TO CART ROUTE
+Route::post('/produits/details/add/{id}' , [CartController::class, 'addToCart']);
 
 
 Route::controller(SlidersController::class)->group(function() {

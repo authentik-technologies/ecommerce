@@ -35,10 +35,6 @@
                                         <!-- <img class="hover-img" src="shop/assets/imgs/shop/product-1-2.jpg" alt="" /> -->
                                     </a>
                                 </div>
-                                <div class="product-action-1">
-                                    <a aria-label="Add To Wishlist" class="action-btn" href="#"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn" href="#"><i class="fi-rs-shuffle"></i></a>
-                                    <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="quickView(this.id)"><i class="fi-rs-eye"></i></a>                                </div>
                                 @php
                                     $amount = $product->product_price - $product->product_discount;
                                     $discount = ($amount/$product->product_price) * 100;
@@ -81,10 +77,6 @@
                                         <span class="old-price">{{ $product->product_price }} $</span>
                                     </div>
                                     @endif
-                                    
-                                    <div class="add-cart">
-                                        <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Ajouter </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,11 +102,7 @@
                                     <img class="default-img" src="{{ asset($product->product_thumbnail) }}" alt="" />
                                 </a>
                             </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)" ><i class="fi-rs-eye"></i></a>
-                            </div>
+                            
                             @php
                                 $amount = $product->product_price - $product->product_discount;
                                 $discount = ($amount/$product->product_price) * 100;
@@ -151,9 +139,6 @@
                                     <span class="old-price">{{ $product->product_price }} $</span>
                                 </div>
                                 @endif 
-                                <div class="add-cart">
-                                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Ajouter </a>
-                                </div>
                             </div>
                         </div>
                     </div>

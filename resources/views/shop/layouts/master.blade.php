@@ -157,9 +157,12 @@
                                     })
                                 } // End Message 
         
-                    }// End add to cart function
-                });
-            }
+                    },
+                    error: function(data) {
+                    console.log("ERROR: ", data);
+                    }
+                }); 
+            } // End add to cart function
         </script>
 
         <!-- MINI Cart Script -->
@@ -335,7 +338,10 @@
                                 title: data.error, 
                                 })
                             } // End Message 
-                        }
+                        },
+                        error: function(data) {
+                        console.log("ERROR: ", data);
+                }
                 });
             } // End cart page remove function
             

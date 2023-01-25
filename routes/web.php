@@ -15,6 +15,9 @@ use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\UserController;
 
+use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CompareController;
+
 use App\http\Middleware\RedirectIfAuthenticated;
 
 
@@ -38,6 +41,7 @@ Route::get('/', function() {
     return view('shop.index');
 });
 
+
 // SHOP FRONTEND
 Route::get('/a-propos', function() {
     return view('shop.about-us');
@@ -56,34 +60,64 @@ Route::get('/boutique', function() {
 Route::get('/produits/details/{id}/{slug}' , [ShopController::class, 'ProductDetails']);
 Route::get('/produits/categories/{id}/{slug}' , [ShopController::class, 'CategoryDetails']);
 
-// PRODUCT MODAL VIEW ROUTE
-Route::get('/product/view/modal/{id}' , [ShopController::class, 'ProductModalAjax']);
-// 
-// PRODUCT MODAL ADD TO CART ROUTE
-Route::post('/produits/details/add/{id}' , [CartController::class, 'addToCart']);
+// PRODUCT MINI CART VIEW ROUTE
+Route::get('/produits/details/minicart' , [CartController::class, 'MiniCart']);
+// PRODUCT ADD TO CART ROUTE
+Route::post('/produits/details/add/{id}' , [CartController::class, 'AddToCart']);
+// PRODUCT REMOVE FROM CART ROUTE
+Route::get('/produits/details/remove/{rowId}' , [CartController::class, 'RemoveMiniCart']);
+
+// PRODUCT ADD TO WISHLIST ROUTE
+Route::post('/ajouter-aux-favoris/{product_id}' , [WishlistController::class, 'AddToWishlist']);
+
+// PRODUCT ADD TO COMPARE ROUTE
+Route::post('/ajouter-pour-comparaison/{product_id}' , [CompareController::class, 'AddToCompare']);
 
 
-Route::controller(SlidersController::class)->group(function() {
+// USER DASHBOARD MIDDLEWARE FUNCTION //
+Route::middleware(['auth', 'role:user'])->group(function(){
 
-    // SLIDER ROUTES
-    Route::get('/admin/sliders' , 'AllSliders')->name('admin.sliders.index');
-    Route::get('/admin/sliders/add' , 'AddSliders')->name('admin.sliders.add');
-    Route::post('/admin/sliders/save' , 'SaveSliders')->name('admin.sliders.save');
-    Route::get('/admin/sliders/edit/{id}' , 'EditSliders')->name('admin.sliders.edit');
-    Route::post('/admin/sliders/update' , 'UpdateSliders')->name('admin.sliders.update');
-    Route::get('/admin/sliders/delete/{id}' , 'DeleteSliders')->name('admin.sliders.delete');
+    // USER DASHBOARD CONTROLLER GROUP
+    Route::controller(UserController::class)->group(function(){
+    Route::get('/dashboard', 'UserDashboard')->name('shop.account.dashboard');
+    Route::post('/dashboard/profile/save', 'UserProfileSave')->name('user.profile.save');
+    Route::post('/dashboard/profile/password/save', 'UserPasswordSave')->name('user.password.save');
+    Route::post('/dashboard/profile/shipping/update', 'UserShippingUpdate')->name('user.shipping.update');
+    Route::post('/dashboard/profile/billing/update', 'UserBillingUpdate')->name('user.billing.update');
+
+    Route::get('/dashboard/logout', 'UserLogout')->name('shop.account.logout');
+
+    });
+
+    // WISHLIST CONTROLLER GROUP
+    Route::controller(WishlistController::class)->group(function(){
+        // PRODUCT ADD TO WISHLISt
+        Route::get('/favoris', 'AllWishlist')->name('shop.wishlist');
+        Route::get('/get-wishlist-products', 'GetWishlist');
+        Route::get('/remove-wishlist-products/{id}', 'RemoveWishlist');
     
-});
+    });
 
-Route::controller(BannersController::class)->group(function() {
+    // COMPARE CONTROLLER GROUP
+    Route::controller(CompareController::class)->group(function(){
+        // PRODUCT ADD TO COMPARE LIST
+        Route::get('/comparaison', 'AllCompare')->name('shop.compare');
+        Route::get('/get-compare-products', 'GetCompare');
+        Route::get('/remove-compare-products/{id}', 'RemoveCompare');
+    
+    });
 
-    // SLIDER ROUTES
-    Route::get('/admin/banners' , 'AllBanners')->name('admin.banners.index');
-    Route::get('/admin/banners/add' , 'AddBanners')->name('admin.banners.add');
-    Route::post('/admin/banners/save' , 'SaveBanners')->name('admin.banners.save');
-    Route::get('/admin/banners/edit/{id}' , 'EditBanners')->name('admin.banners.edit');
-    Route::post('/admin/banners/update' , 'UpdateBanners')->name('admin.banners.update');
-    Route::get('/admin/banners/delete/{id}' , 'DeleteBanners')->name('admin.banners.delete');
+    // CART CONTROLLER GROUP
+    Route::controller(CartController::class)->group(function(){
+        // PRODUCT CART PAGE
+        Route::get('/panier', 'AllCart')->name('shop.cart');
+        Route::get('/produits/details/panier', 'GetCart');
+        Route::get('/produits/details/remove/{rowId}', 'RemoveCart');
+        
+        
+    
+    });
+
     
 });
 
@@ -191,21 +225,30 @@ Route::middleware(['auth','role:admin'])->group(function() {
 
 });
 
-// VENDOR DASHBOARD //
 
+// BACKEND SLIDER FUNCTIONS //
+Route::controller(SlidersController::class)->group(function() {
 
-// CLIENT DASHBOARD //
-
-Route::middleware(['auth'])->group(function() {
+    // SLIDER ROUTES
+    Route::get('/admin/sliders' , 'AllSliders')->name('admin.sliders.index');
+    Route::get('/admin/sliders/add' , 'AddSliders')->name('admin.sliders.add');
+    Route::post('/admin/sliders/save' , 'SaveSliders')->name('admin.sliders.save');
+    Route::get('/admin/sliders/edit/{id}' , 'EditSliders')->name('admin.sliders.edit');
+    Route::post('/admin/sliders/update' , 'UpdateSliders')->name('admin.sliders.update');
+    Route::get('/admin/sliders/delete/{id}' , 'DeleteSliders')->name('admin.sliders.delete');
     
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('shop.account.dashboard');
-    Route::post('/dashboard/profile/save', [UserController::class, 'UserProfileSave'])->name('user.profile.save');
-    Route::post('/dashboard/profile/password/save', [UserController::class, 'UserPasswordSave'])->name('user.password.save');
-    Route::post('/dashboard/profile/shipping/update', [UserController::class, 'UserShippingUpdate'])->name('user.shipping.update');
-    Route::post('/dashboard/profile/billing/update', [UserController::class, 'UserBillingUpdate'])->name('user.billing.update');
+});
 
-    Route::get('/dashboard/logout', [UserController::class, 'UserLogout'])->name('shop.account.logout');
+// BACKEND BANNER FUNCTIONS //
+Route::controller(BannersController::class)->group(function() {
 
+    // BANNER ROUTES
+    Route::get('/admin/banners' , 'AllBanners')->name('admin.banners.index');
+    Route::get('/admin/banners/add' , 'AddBanners')->name('admin.banners.add');
+    Route::post('/admin/banners/save' , 'SaveBanners')->name('admin.banners.save');
+    Route::get('/admin/banners/edit/{id}' , 'EditBanners')->name('admin.banners.edit');
+    Route::post('/admin/banners/update' , 'UpdateBanners')->name('admin.banners.update');
+    Route::get('/admin/banners/delete/{id}' , 'DeleteBanners')->name('admin.banners.delete');
     
 });
 

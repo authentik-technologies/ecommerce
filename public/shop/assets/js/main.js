@@ -430,26 +430,6 @@
         }
     });
 
-    /*---------------------
-        Price range
-    --------------------- */
-    // if ($("#slider-range").length) {
-    //     var sliderrange = $("#slider-range");
-    //     var amountprice = $("#amount");
-    //     $(function () {
-    //         sliderrange.slider({
-    //             range: true,
-    //             min: 16,
-    //             max: 400,
-    //             values: [0, 300],
-    //             slide: function (event, ui) {
-    //                 amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
-    //             }
-    //         });
-    //         amountprice.val("$" + sliderrange.slider("values", 0) + " - $" + sliderrange.slider("values", 1));
-    //     });
-    // }
-
     /*-------------------------------
         Sort by active
     -----------------------------------*/
@@ -477,7 +457,7 @@
     }
 
     /*-----------------------
-        Shop filter active 
+        Shop filter active
     ------------------------- */
     $(".shop-filter-toogle").on("click", function (e) {
         e.preventDefault();
@@ -542,6 +522,21 @@
             enabled: true
         }
     });
+
+    $('.btn-close').on('click', function(e) {
+        $('.zoomContainer').remove();
+    });
+
+    $('#quickViewModal').on('show.bs.modal', function (e) {
+        $(document).click(function (e) {
+            var modalDialog = $('.modal-dialog');
+            if (!modalDialog.is(e.target) && modalDialog.has(e.target).length === 0) {
+                $('.zoomContainer').remove();
+            }
+        });
+    });
+
+
 
     /*---------------------
         Select active
@@ -715,13 +710,14 @@
     $(".modal").on("shown.bs.modal", function (e) {
         $(".product-image-slider").slick("setPosition");
         $(".slider-nav-thumbnails").slick("setPosition");
-
-        $(".product-image-slider .slick-active img").elevateZoom({
-            zoomType: "inner",
-            cursor: "crosshair",
-            zoomWindowFadeIn: 500,
-            zoomWindowFadeOut: 750
-        });
+        if ($(window).width() > 768) {
+            $(".product-image-slider .slick-active img").elevateZoom({
+                zoomType: "inner",
+                cursor: "crosshair",
+                zoomWindowFadeIn: 500,
+                zoomWindowFadeOut: 750
+            });
+        }
     });
 
     /*--- VSticker ----*/

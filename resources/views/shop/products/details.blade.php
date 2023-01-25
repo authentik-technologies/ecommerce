@@ -121,8 +121,8 @@
                             <hr>
                             <div class="detail-extralink mb-50">
                                 <div class="product-extra-link2">
-                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                    <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                    <a aria-label="Ajouter aux favoris" class="action-btn hover-up" id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
+                                    <a aria-label="Compare" class="action-btn hover-up" id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
                                 </div>
                             </div>
 
@@ -413,45 +413,46 @@
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap hover-up">
                                     <div class="product-img-action-wrap">
-                                        <div class="product-img product-img-zoom">
-                                            <a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">
-                                                <img class="default-img" src="{{ asset($product->product_thumbnail) }}" style="height: 180px" alt="" />
-                                                <!-- <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" /> -->
-                                            </a>
-                                        </div>
-                                        <div class="product-action-1">
-                                            <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                            <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                        </div>
+                                            <div class="product-img product-img-zoom">
+                                                <a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">
+                                                    <img class="default-img" src="{{ asset($product->product_thumbnail) }}" height="200px" alt="" />
+                                                    <!-- <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" /> -->
+                                                </a>
+                                          
+                                            </div>
+                                            <div class="product-action-1">
+                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
+                                                <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                            </div>
 
                                         @php
                                         $amount = $product->product_price - $product->product_discount;
                                         $discount = ($amount/$product->product_price) * 100;
                                         @endphp
 
-                                        <div class="product-badges product-badges-position product-badges-mrg">
-                                        @if ($product->product_discount == NULL)
-                                        <span class="hot">Nouveau</span>
-                                        @else
-                                            <span class="hot">Rabais {{ round($discount) }} %</span>
-                                        @endif
-                                    </div>
-                                    <div class="product-content-wrap">
-                                        <h2><a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">{{ $product->product_name }}</a></h2>
-                                        <div class="rating-result" title="90%">
-                                            <span> </span>
+                                            <div class="product-badges product-badges-position product-badges-mrg">
+                                                @if ($product->product_discount == NULL)
+                                                <span class="hot">Nouveau</span>
+                                                @else
+                                                    <span class="hot">Rabais {{ round($discount) }} %</span>
+                                                @endif
+                                            </div>
+                                        <div class="product-content-wrap">
+                                            <h2><a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">{{ $product->product_name }}</a></h2>
+                                            <div class="rating-result" title="90%">
+                                                <span></span>
+                                            </div>
+                                            @if ($product->product_discount == NULL)
+                                            <div class="product-price">
+                                                <span>{{ $product->product_price }} $ / {{ $product->product_measurement }}</span>
+                                            </div>
+                                            @else
+                                            <div class="product-price">
+                                                <span>{{ $product->product_discount }} $ / {{ $product->product_measurement }}</span>
+                                                <span class="old-price">{{ $product->product_price }} $</span>
+                                            </div>
+                                            @endif
                                         </div>
-                                        @if ($product->product_discount == NULL)
-                                        <div class="product-price">
-                                            <span>{{ $product->product_price }} $ / {{ $product->product_measurement }}</span>
-                                        </div>
-                                        @else
-                                        <div class="product-price">
-                                            <span>{{ $product->product_discount }} $ / {{ $product->product_measurement }}</span>
-                                            <span class="old-price">{{ $product->product_price }} $</span>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -463,6 +464,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection
 

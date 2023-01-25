@@ -5110,6 +5110,8 @@ table .product-thumbnail img {
   max-width: 240px;
 }
 
+
+
 .detail-extralink .detail-measurement {
   margin: 0 6px 15px 0;
   background-color: #fff;
@@ -5121,6 +5123,7 @@ table .product-thumbnail img {
   padding: 11px 20px 11px 30px;
   max-width: 80px;
 }
+
 
 .stock-status {
   display: inline-block;

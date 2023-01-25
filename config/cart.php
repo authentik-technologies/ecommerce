@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'calculator' => \Gloudemans\Shoppingcart\Calculation\DefaultCalculator::class,
+    // 'calculator' => \Gloudemans\Shoppingcart\Calculation\DefaultCalculator::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,8 @@ return [
     |
     */
 
-    'tax' => 14.975,
+    'tax' => 14.975 / 100,
+    
 
     /*
     |--------------------------------------------------------------------------

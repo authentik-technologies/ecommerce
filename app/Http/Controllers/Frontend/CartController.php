@@ -15,9 +15,9 @@ class CartController extends Controller
 {
 
 
-    public function addToCart(Request $request, $id){
+    public function AddToCart(Request $request, $id){
 
-        $product = Product::findOrFail($id);
+        $product = Products::findOrFail($id);
 
         if ($product->product_discount == NULL) {
 
@@ -30,6 +30,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->product_thumbnail,
+                    'unit' => $product->product_measurement,
                 ],
             ]);
             return response()->json(['success' => 'Ajouté au panier avec succès' ]);
@@ -45,10 +46,58 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => [
                     'image' => $product->product_thumbnail,
+                    'unit' => $product->product_measurement,
                 ],
             ]);
 
             return response()->json(['success' => 'Ajouté au panier avec succès' ]);
         }
+    }// End Method
+
+    public function MiniCart(){
+
+        $cartContent = Cart::content();
+        $cartQty = Cart::count();
+        $cartSubTotal = Cart::subtotal();
+        $cartTax = Cart::tax();
+        $cartTotal = Cart::total();
+
+        return response()->json([
+            'cartContent' => $cartContent,
+            'cartQty' => $cartQty,
+            'cartSubTotal' => $cartSubTotal,
+            'cartTax' => $cartTax,
+            'cartTotal' => $cartTotal,
+        ]);
+    }// End Method
+
+    public function RemoveCart($rowId){
+
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Produits supprimé du panier']);
+        
+    }// End Method
+
+    public function AllCart(){
+
+        return view('shop.cart');
+        
+    }// End Method
+
+    public function GetCart(){
+
+        $cartContent = Cart::content();
+        $cartQty2 = Cart::count();
+        $cartSubTotal = Cart::subtotal();
+        $cartTax = Cart::tax();
+        $cartTotal = Cart::total();
+
+        return response()->json([
+            'cartContent' => $cartContent,
+            'cartQty2' => $cartQty2,
+            'cartSubTotal' => $cartSubTotal,
+            'cartTax' => $cartTax,
+            'cartTotal' => $cartTotal,
+        ]);
     }// End Method
 }

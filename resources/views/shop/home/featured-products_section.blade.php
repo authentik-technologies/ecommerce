@@ -39,9 +39,9 @@
                                         @endphp
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             @if ($product->product_discount == NULL)
-                                            <span class="hot">Nouveau</span>
+                                            <span class="best">Meilleur Vendeur</span>
                                             @else
-                                            <span class="hot">Rabais {{ round($discount) }} %</span>
+                                            <span class="sale">Rabais {{ round($discount) }} %</span>
                                             @endif
                                         </div>
                                     </div>

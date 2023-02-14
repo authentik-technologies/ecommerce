@@ -1,4 +1,26 @@
 @extends('shop.layouts.master')
+@section('head')
+<meta charset="utf-8" />
+    <title>Plancher Laurentides</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('shop/assets/imgs/theme/favicon.svg') }}"/>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/plugins/animate.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
+@endsection
 @section('shop')
 
 <div class="page-header breadcrumb-wrap">
@@ -83,40 +105,53 @@
                     <div class="row">
                         <div class="col-xl-8">
                             <div class="contact-from-area padding-20-row-col">
-                                <h5 class="text-brand mb-10">Contact form</h5>
-                                <h2 class="mb-10">Drop Us a Line</h2>
-                                <p class="text-muted mb-30 font-sm">Your email address will not be published. Required fields are marked *</p>
-                                <form class="contact-form-style mt-30" id="contact-form" action="#" method="post">
+                                <h5 class="text-brand mb-10">Formulaire de contact</h5>
+                                <h2 class="mb-10">Écrivez-nous</h2>
+                                <p class="text-muted mb-30 font-sm">Les champs obligatoires sont marqués d'un *.</p>
+                                <form class="contact-form-style mt-30" id="myForm" action="{{ route('contact.save') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="input-style mb-20">
-                                                <input name="name" placeholder="First Name" type="text" />
+                                                <input id="name" name="name" placeholder="Votre nom" type="text" class="form-control" required/>        
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="input-style mb-20">
-                                                <input name="email" placeholder="Your Email" type="email" />
+                                                <input id="email" name="email" placeholder="Courriel" type="email" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="input-style mb-20">
-                                                <input name="telephone" placeholder="Your Phone" type="tel" />
+                                                <input id="phone" name="phone" placeholder="Numéro de téléphone" type="tel" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="input-style mb-20">
-                                                <input name="subject" placeholder="Subject" type="text" />
+                                                <input id="subject" name="subject" placeholder="Sujet" type="text" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="textarea-style mb-30">
-                                                <textarea name="message" placeholder="Message"></textarea>
+                                                <textarea id="message" name="message" placeholder="Message" class="form-control" style="height: 120px" required></textarea>
                                             </div>
-                                            <button class="submit submit-auto-width" type="submit">Send message</button>
+                                            <input style="display: inline-block;
+                                            font-size: 18px;
+                                            font-weight: 700;
+                                            padding: 12px 30px;
+                                            border-radius: 4px;
+                                            color: rgb(255, 255, 255);
+                                            border: 1px solid transparent;
+                                            background-color: rgb(233, 1, 1);
+                                            width: 200px;
+                                            height: 50px;
+                                            cursor: pointer;
+                                            transition: all 300ms linear 0s;
+                                            letter-spacing: 0.5px;" class="submit submit-auto-width" 
+                                            name="send" type="submit"></input>
                                         </div>
                                     </div>
                                 </form>
-                                <p class="form-messege"></p>
                             </div>
                         </div>
                         <div class="col-lg-4 pl-50 d-lg-block d-none">
@@ -128,5 +163,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

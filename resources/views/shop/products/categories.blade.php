@@ -1,4 +1,26 @@
 @extends('shop.layouts.master')
+@section('head')
+<meta charset="utf-8" />
+    <title>Plancher Laurentides</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('shop/assets/imgs/theme/favicon.svg') }}"/>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/plugins/animate.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
+@endsection
 @section('shop')
 
 <div class="page-header mt-30 mb-50">
@@ -6,7 +28,7 @@
         <div class="archive-header">
             <div class="row align-items-center">
                 <div class="col-xl-3">
-                    <h1 class="mb-15">{{ $breadcrumbs->category_name }}</h1>
+                    <h3 class="mb-15">{{ $breadcrumbs->category_name }}</h3>
                     <div class="breadcrumb">
                         <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Accueil</a>
                         <span></span><a href="{{ url('/boutique') }}">Boutique</a>
@@ -84,15 +106,15 @@
                                 @endphp
                                 <div class="product-badges product-badges-position product-badges-mrg">
                                     @if ($product->product_discount == NULL)
-                                    <span class="hot">Nouveau</span>
+                                    <span class="new">Nouveau</span>
                                     @else
-                                     <span class="hot">Rabais {{ round($discount) }} %</span>
+                                     <span class="sale">Rabais {{ round($discount) }} %</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
-                                    <a href="shop-grid-right.html">{{ $product['categories']['category_name'] }}</a>
+                                    <a href="#">{{ $product['categories']['category_name'] }}</a>
                                 </div>
                                 <h2><a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></h2>
                                 <!-- <div class="product-rate-cover">
@@ -124,25 +146,6 @@
                         </div>
                     </div>
                     @endforeach <!--end product card-->  
-            </div>
-
-            <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
 

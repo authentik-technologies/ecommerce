@@ -195,6 +195,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+         /*
+         * PDF Package...
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -212,5 +217,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
+
+        // PDF Alias
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 ];

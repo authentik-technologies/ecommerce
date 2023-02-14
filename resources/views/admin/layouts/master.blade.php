@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="semi-dark">
+<html lang="fr_CA" class="semi-dark">
 
 <head>
 	<!-- Required meta tags -->
@@ -152,6 +152,128 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ asset('admin/assets/js/sweetalert.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+    const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+    ];
+    let qntYears = 4;
+    let selectYear = $("#year");
+    let selectMonth = $("#month");
+    let selectDay = $("#day");
+    let currentYear = new Date().getFullYear();
+
+    for (var y = 0; y < qntYears; y++) {
+        let date = new Date(currentYear);
+        let yearElem = document.createElement("option");
+        yearElem.value = currentYear
+        yearElem.textContent = currentYear;
+        selectYear.append(yearElem);
+        currentYear--;
+    }
+
+    for (var m = 0; m < 12; m++) {
+        let month = monthNames[m];
+        let monthElem = document.createElement("option");
+        monthElem.value = m;
+        monthElem.textContent = month;
+        selectMonth.append(monthElem);
+    }
+
+    var d = new Date();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var day = d.getDate();
+
+    selectYear.val(year);
+    selectYear.on("change", AdjustDays);
+    selectMonth.val(month);
+    selectMonth.on("change", AdjustDays);
+
+    AdjustDays();
+    selectDay.val(day)
+
+    function AdjustDays() {
+        var year = selectYear.val();
+        var month = parseInt(selectMonth.val()) + 1;
+        selectDay.empty();
+
+        //get the last day, so the number of days in that month
+        var days = new Date(year, month, 0).getDate();
+
+        //lets create the days of that month
+        for (var d = 1; d <= days; d++) {
+        var dayElem = document.createElement("option");
+        dayElem.value = d;
+        dayElem.textContent = d;
+        selectDay.append(dayElem);
+        }
+    }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+    const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+    ];
+    let qntYears = 4;
+    let selectYear = $("#year2");
+    let selectMonth = $("#month2");
+    let selectDay = $("#day2");
+    let currentYear = new Date().getFullYear();
+
+    for (var y = 0; y < qntYears; y++) {
+        let date = new Date(currentYear);
+        let yearElem = document.createElement("option");
+        yearElem.value = currentYear
+        yearElem.textContent = currentYear;
+        selectYear.append(yearElem);
+        currentYear--;
+    }
+
+    for (var m = 0; m < 12; m++) {
+        let month = monthNames[m];
+        let monthElem = document.createElement("option");
+        monthElem.value = m;
+        monthElem.textContent = month;
+        selectMonth.append(monthElem);
+    }
+
+    var d = new Date();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var day = d.getDate();
+
+    selectYear.val(year);
+    selectYear.on("change", AdjustDays);
+    selectMonth.val(month);
+    selectMonth.on("change", AdjustDays);
+
+    AdjustDays();
+    selectDay.val(day)
+
+    function AdjustDays() {
+        var year = selectYear.val();
+        var month = parseInt(selectMonth.val()) + 1;
+        selectDay.empty();
+
+        //get the last day, so the number of days in that month
+        var days = new Date(year, month, 0).getDate();
+
+        //lets create the days of that month
+        for (var d = 1; d <= days; d++) {
+        var dayElem = document.createElement("option");
+        dayElem.value = d;
+        dayElem.textContent = d;
+        selectDay.append(dayElem);
+        }
+    }
+    });
+</script>
+
+
 
 </body>
 

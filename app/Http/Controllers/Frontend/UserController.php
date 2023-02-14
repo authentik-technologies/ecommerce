@@ -24,6 +24,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->shipping_address = $request->shipping_address;
+        $data->shipping_unit = $request->shipping_unit;
         $data->shipping_postal = $request->shipping_postal;
         $data->shipping_city = $request->shipping_city;
         $data->shipping_province = $request->shipping_province;
@@ -31,7 +32,12 @@ class UserController extends Controller
         
         $data->save();
 
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Mise à jour avec succès',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
         
     } //End Function
 
@@ -40,6 +46,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->billing_address = $request->billing_address;
+        $data->billing_unit = $request->billing_unit;
         $data->billing_postal = $request->billing_postal;
         $data->billing_city = $request->billing_city;
         $data->billing_province = $request->billing_province;
@@ -47,7 +54,12 @@ class UserController extends Controller
         
         $data->save();
 
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Mise à jour avec succès',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
         
     } //End Function
 

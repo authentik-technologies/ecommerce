@@ -1,4 +1,27 @@
 @extends('shop.layouts.master')
+@section('head')
+<meta charset="utf-8" />
+    <title>Plancher Laurentides</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('shop/assets/imgs/theme/favicon.svg') }}"/>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/plugins/animate.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
+@endsection
+
 @section('shop')
 
 <div class="page-header breadcrumb-wrap">
@@ -39,10 +62,9 @@
             </div>
             <div class="divider-2 mb-30"></div>
             <div class="cart-action d-flex justify-content-between">
-                <a class="btn "><i class="fi-rs-arrow-left mr-10"></i>Boutique</a>
-                <a class="btn  mr-10 mb-sm-15"><i class="fi-rs-refresh mr-10"></i>Mettre à jour</a>
+                <a href="{{ url('/boutique') }}" class="btn "><i class="fi-rs-arrow-left mr-10"></i>Boutique</a>
             </div>
-            <div class="row mt-50">
+            <!-- <div class="row mt-50">
                 <div class="col-lg-7">
                     <div class="calculate-shiping p-40 border-radius-15 border">
                         <h4 class="mb-10">Calculate Shipping</h4>
@@ -68,7 +90,7 @@
                         </form>
                     </div>
                 </div>
-                <!-- <div class="col-lg-5">
+                <div class="col-lg-5">
                      <div class="p-40">
                         <h4 class="mb-10">Code promo</h4>
                         <p class="mb-30"><span class="font-lg text-muted">Using A Promo Code?</p>
@@ -79,8 +101,8 @@
                             </div>
                         </form>
                     </div> 
-                </div> -->
-            </div>
+                </div> 
+            </div>-->
         </div>
         <div class="col-lg-4">
             <div class="border p-md-4 cart-totals ml-30">
@@ -110,15 +132,15 @@
                             </tr>
                             <tr>
                                 <td class="cart_total_label">
-                                    <h6 class="text-muted">Shipping</h6>
+                                    <h6 class="text-muted">Livraison</h6>
                                 </td>
                                 <td class="cart_total_amount">
-                                    <h6 class="text-heading text-end">Free</h6</td> </tr> <tr>
+                                    <h6 class="text-heading text-end">Secteur du Grand-Montréal</h6></td></tr> <tr>
                                 <td class="cart_total_label">
-                                    <h6 class="text-muted">Estimate for</h6>
+                                    <h6 class="text-muted">Frais de livraison</h6>
                                 </td>
                                 <td class="cart_total_amount">
-                                    <h6 class="text-heading text-end">United Kingdom</h6</td> </tr> <tr>
+                                    <h6 class="text-heading text-end">120.00$</h6</td> </tr> <tr>
                                 <td scope="col" colspan="2">
                                     <div class="divider-2 mt-10 mb-10"></div>
                                 </td>
@@ -134,7 +156,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="#" class="btn mb-20 w-100">Commander<i class="fi-rs-sign-out ml-15"></i></a>
+                <a href="{{ route('shop.checkout') }}" class="btn mb-20 w-100">Commander<i class="fi-rs-sign-out ml-15"></i></a>
             </div>
         </div>
     </div>

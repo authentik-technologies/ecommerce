@@ -1,8 +1,10 @@
 <!-- Header  -->
 <header class="header-area header-style-1 header-height-2">
-    
+    @php
+    $setting = App\Models\Settings::find(1);    
+    @endphp
     <div class="mobile-promotion">
-        <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
+        <span><strong>{{ $setting->messages }}</strong></span>
     </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
@@ -10,22 +12,23 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Order Tracking</a></li>
+                            <li><a href="mailto:{{ $setting->email }}">Support</a></li>
+                            <li><a href="{{ url('/faq') }}">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4">
                     <div class="text-center">
-                        <div id="news-flash" class="d-inline-block">
+                        <ul>
+                            <li><strong>{{ $setting->messages }}</strong></li>
+                        </ul>
+                        <!-- <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>100% Secure delivery without contacting the courier</li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today</li>
+                                <li>messages here</li>
+                                <li>messages here</li>
+                                <li>messages here</li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4">
@@ -33,12 +36,12 @@
                         <ul>
                            
                             <li>
-                                <a class="language-dropdown-active" href="#">Français <i class="fi-rs-angle-small-down"></i></a>
-                                <ul class="language-dropdown">
+                                <a class="language-dropdown-active" href="#">Français <i class=""></i></a>
+                                <!--<ul class="language-dropdown">
                                     <li>
                                         <a href="#">English</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                         </ul>
                     </div>
@@ -54,20 +57,18 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
-                            <select class="select-active">
-                                <option>Nos Produits</option>
-                                
-                            </select>
-                            <input type="text" placeholder="Faites une recherche..." />
+                        <form action="{{ route('shop.search') }}" method="POST">
+                            @csrf
+                            <input name="search" placeholder="Faites une recherche..." />
                         </form>
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
+                            @auth
                             <div class="header-action-icon-2">
                                 <a href="{{ route('shop.compare') }}">
                                     <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-compare.svg') }}" />
-                                    <span class="pro-count blue" id="compareQty"></span>
+                                    <span class="pro-count blue" id="compareQty">0</span>
                                 </a>
                                 <a href="{{ route('shop.compare') }}"><span class="lable"></span></a>
                             </div>
@@ -75,15 +76,17 @@
                             <div class="header-action-icon-2">
                                 <a href="{{ route('shop.wishlist') }}">
                                     <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                                    <span class="pro-count blue" id="wishQty"></span>
+                                    <span class="pro-count blue" id="wishQty">0</span>
                                 </a>
                                 <a href="{{ route('shop.wishlist') }}"><span class="lable">Favoris</span></a>
                             </div>
+                            @else
+                            @endauth
 
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{ route('shop.cart') }}">
                                     <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                    <span class="pro-count blue" id="cartQty"></span>
+                                    <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
                                 <a href=""><span class="lable">Panier</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
@@ -92,17 +95,16 @@
                                     <!-- End Mini cart ajax function -->
 
                                     <div class="shopping-cart-footer">
-                                        
                                         <div class="shopping-cart-button">
-                                            <a href="{{ route('shop.cart') }}" class="outline">Voir panier</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ route('shop.cart') }}" class="outline">Panier</a>
+                                            <a href="{{ route('shop.checkout') }}">Commander</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-user.svg') }}" />
+                                    <img class="svgInject" alt="Compte_PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
                                 @auth
                                     <a href="{{ route('shop.account.dashboard') }}"><span class="lable ml-0">Mon Compte</span></a>
@@ -131,7 +133,7 @@
 
 
 @php  
-    $brands = App\Models\Brands::orderBy('brand_name', 'ASC')->limit(5)->get();
+    $brands = App\Models\Brands::orderBy('brand_name', 'ASC')->get();
 @endphp
 
 <div class="header-bottom header-bottom-bg-color sticky-bar">
@@ -150,39 +152,24 @@
                         <div class="d-flex categori-dropdown-inner">
                             <ul>
                                 @foreach ( $brands as $item )
+                                @if($loop->index < 5)
                                 <li>
-                                    <a href="#"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
+                                    <a href="{{ url('/produits/marques/'.$item->id.'/'.$item->brand_slug) }}"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
                                 </li>
+                                @endif
                                 @endforeach
                                 
                             </ul>
                             <ul class="end">
                                 @foreach ( $brands as $item )
+                                @if($loop->index > 4)
                                 <li>
-                                    <a href="#"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
+                                    <a href="{{ url('/produits/marques/'.$item->id.'/'.$item->brand_slug) }}"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
                                 </li>
+                                @endif
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="more_slide_open" style="display: none">
-                            <div class="d-flex categori-dropdown-inner">
-                                <ul>
-                                    @foreach ( $brands as $item )
-                                    <li>
-                                        <a href="#"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                <ul class="end">
-                                    @foreach ( $brands as $item )
-                                <li>
-                                    <a href="#"> <img src="{{ asset( $item->brand_image) }}" alt="" />{{ $item->brand_name }}</a>
-                                </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Afficher Tous</span></div>
                     </div>
                 </div>
                
@@ -216,9 +203,9 @@
                                 <a href="{{ url('/a-propos') }}">À Propos <i class="fi-rs-angle-down"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="{{ url('/contactez-nous') }}">Coordonnées</a></li>
-                                    <li><a href="page-contact.html">F.A.Q</a></li>
-                                    <li><a href="page-account.html">Livraisons</a></li>
-                                    <li><a href="page-login.html">Politiques</a></li>
+                                    <li><a href="{{ url('/faq') }}">F.A.Q</a></li>
+                                <!-- <li><a href="{{ url('/contactez-nous') }}">Livraisons</a></li> -->
+                                    <li><a href="{{ url('/politiques') }}">Politiques</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -234,51 +221,38 @@
             </div>
             <div class="header-action-right d-block d-lg-none">
                 <div class="header-action-2">
+                    @auth
                     <div class="header-action-icon-2">
-                        <a href="shop-wishlist.html">
-                            <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                            <span class="pro-count white">4</span>
+                        <a href="{{ route('shop.compare') }}">
+                            <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-compare.svg') }}" />
+                            <span class="pro-count blue" id="compareQty">0</span>
                         </a>
+                        <a href="{{ route('shop.compare') }}"><span class="lable"></span></a>
                     </div>
+
                     <div class="header-action-icon-2">
-                        <a class="mini-cart-icon" href="#">
-                            <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                            <span class="pro-count white">2</span>
+                        <a href="{{ route('shop.wishlist') }}">
+                            <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
+                            <span class="pro-count blue" id="wishQty">0</span>
+                        </a>
+                        <a href="{{ route('shop.wishlist') }}"><span class="lable">Favoris</span></a>
+                    </div>
+                    @else
+                    @endauth
+                    <div class="header-action-icon-2">
+                        <a class="mini-cart-icon" href="{{ route('shop.cart') }}">
+                            <img alt="Panier" src="{{ asset('shop/assets/imgs/theme/icons/icon-cart.svg') }}" />
+                            <span class="pro-count white" id="mcartQty">0</span>
                         </a>
                         <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                            <ul>
-                                <li>
-                                    <div class="shopping-cart-img">
-                                        <a href="shop-product-right.html"><img alt="Nest" src="#" /></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
-                                        <h3><span>1 × </span>$800.00</h3>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="shopping-cart-img">
-                                        <a href="shop-product-right.html"><img alt="Nest" src="#" /></a>
-                                    </div>
-                                    <div class="shopping-cart-title">
-                                        <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                        <h3><span>1 × </span>$3500.00</h3>
-                                    </div>
-                                    <div class="shopping-cart-delete">
-                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <!-- Start Mini cart ajax function -->
+                            <div id="miniCartMobile"> </div>
+                            <!-- End Mini cart ajax function -->
+
                             <div class="shopping-cart-footer">
-                                <div class="shopping-cart-total">
-                                    <h4>Total <span>$383.00</span></h4>
-                                </div>
                                 <div class="shopping-cart-button">
-                                    <a href="shop-cart.html">View cart</a>
-                                    <a href="shop-checkout.html">Checkout</a>
+                                    <a href="{{ route('shop.cart') }}" class="outline">Panier</a>
+                                    <a href="{{ route('shop.checkout') }}">Commander</a>
                                 </div>
                             </div>
                         </div>
@@ -307,9 +281,9 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…" />
-                    <button type="submit"><i class="fi-rs-search"></i></button>
+                <form action="{{ route('shop.search') }}" method="POST">
+                    @csrf
+                    <input name="search" placeholder="Faites une recherche..." />
                 </form>
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
@@ -317,139 +291,52 @@
                 <nav>
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
-                            <a href="index.html">Home</a>
+                            <a href="{{ url('/') }}">Accueil</a>
                              
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="shop-grid-right.html">shop</a>
-                            <ul class="dropdown">
-                                <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
-                                <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
-                                <li><a href="shop-list-right.html">Shop List – Right Sidebar</a></li>
-                                <li><a href="shop-list-left.html">Shop List – Left Sidebar</a></li>
-                                <li><a href="shop-fullwidth.html">Shop - Wide</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Single Product</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Product – Right Sidebar</a></li>
-                                        <li><a href="shop-product-left.html">Product – Left Sidebar</a></li>
-                                        <li><a href="shop-product-full.html">Product – No sidebar</a></li>
-                                        <li><a href="shop-product-vendor.html">Product – Vendor Infor</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                <li><a href="shop-cart.html">Shop – Cart</a></li>
-                                <li><a href="shop-checkout.html">Shop – Checkout</a></li>
-                                <li><a href="shop-compare.html">Shop – Compare</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Shop Invoice</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-invoice-1.html">Shop Invoice 1</a></li>
-                                        <li><a href="shop-invoice-2.html">Shop Invoice 2</a></li>
-                                        <li><a href="shop-invoice-3.html">Shop Invoice 3</a></li>
-                                        <li><a href="shop-invoice-4.html">Shop Invoice 4</a></li>
-                                        <li><a href="shop-invoice-5.html">Shop Invoice 5</a></li>
-                                        <li><a href="shop-invoice-6.html">Shop Invoice 6</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="{{ url('/boutique') }}">Boutique</a>
                         </li>
                         
                         <li class="menu-item-has-children">
-                            <a href="#">Mega menu</a>
+                            <a href="{{ url('/a-propos') }}">À Propros</a>
                             <ul class="dropdown">
-                                <li class="menu-item-has-children">
-                                    <a href="#">Women's Fashion</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Dresses</a></li>
-                                        <li><a href="shop-product-right.html">Blouses & Shirts</a></li>
-                                        <li><a href="shop-product-right.html">Hoodies & Sweatshirts</a></li>
-                                        <li><a href="shop-product-right.html">Women's Sets</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Men's Fashion</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Jackets</a></li>
-                                        <li><a href="shop-product-right.html">Casual Faux Leather</a></li>
-                                        <li><a href="shop-product-right.html">Genuine Leather</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Technology</a>
-                                    <ul class="dropdown">
-                                        <li><a href="shop-product-right.html">Gaming Laptops</a></li>
-                                        <li><a href="shop-product-right.html">Ultraslim Laptops</a></li>
-                                        <li><a href="shop-product-right.html">Tablets</a></li>
-                                        <li><a href="shop-product-right.html">Laptop Accessories</a></li>
-                                        <li><a href="shop-product-right.html">Tablet Accessories</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="`{{ url('/contactez-nous') }}">Coordonnées</a></li>
+                                <li><a href="{{ url('/faq') }}">F.A.Q</a></li>
+                                <li><a href="{{ url('/politiques') }}">Politiques</a></li>
                             </ul>
+                        </li>
+                        @auth
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('shop.account.dashboard') }}">Mon Compte</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('shop.account.dashboard') }}"><i class="fi fi-rs-user mr-10"></i>Profile</a></li>
+                                <li><a href="{{ route('shop.account.logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Déconnexion</a></li>
+                            </ul>
+                        </li>
+                        @else
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('login') }}"><i class="fi-rs-user"></i>Connexion</a>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="blog-category-fullwidth.html">Blog</a>
-                            <ul class="dropdown">
-                                <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
-                                <li><a href="blog-category-list.html">Blog Category List</a></li>
-                                <li><a href="blog-category-big.html">Blog Category Big</a></li>
-                                <li><a href="blog-category-fullwidth.html">Blog Category Wide</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Single Product Layout</a>
-                                    <ul class="dropdown">
-                                        <li><a href="blog-post-left.html">Left Sidebar</a></li>
-                                        <li><a href="blog-post-right.html">Right Sidebar</a></li>
-                                        <li><a href="blog-post-fullwidth.html">No Sidebar</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="{{ route('register') }}" style="color: #e90101;"><i class="fi-rs-user"></i>Insciption</a>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="page-about.html">About Us</a></li>
-                                <li><a href="page-contact.html">Contact</a></li>
-                                <li><a href="page-account.html">My Account</a></li>
-                                <li><a href="page-login.html">Login</a></li>
-                                <li><a href="page-register.html">Register</a></li>
-                                <li><a href="page-forgot-password.html">Forgot password</a></li>
-                                <li><a href="page-reset-password.html">Reset password</a></li>
-                                <li><a href="page-purchase-guide.html">Purchase Guide</a></li>
-                                <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="page-terms.html">Terms of Service</a></li>
-                                <li><a href="page-404.html">404 Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Language</a>
-                            <ul class="dropdown">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
-                                <li><a href="#">Spanish</a></li>
-                            </ul>
-                        </li>
+                        @endauth
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
             </div>
+            
             <div class="mobile-header-info-wrap">
                 <div class="single-mobile-header-info">
-                    <a href="page-contact.html"><i class="fi-rs-marker"></i> Our location </a>
-                </div>
-                <div class="single-mobile-header-info">
-                    <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
-                </div>
-                <div class="single-mobile-header-info">
-                    <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                    <a href="tel:{{ $setting->phone }}"><i class="fi-rs-headphones"></i>{{ $setting->phone }}</a>
                 </div>
             </div>
             <div class="mobile-social-icon mb-50">
-                <h6 class="mb-15">Follow Us</h6>
-                <a href="#"><img src="{{ asset('shop/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
+                <h6 class="mb-15">Suivez-nous</h6>
+                <a href="{{ $setting->face }}"><img src="{{ asset('shop/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
             </div>
-            <div class="site-copyright">Copyright 2022 © Plancher Laurentides</div>
+            <div class="site-copyright">{{ $setting->copy }}</div>
         </div>
     </div>
 </div>

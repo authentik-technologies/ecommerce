@@ -1,28 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr_CA">
    
 <head>
-    <meta charset="utf-8" />
-    <title>Plancher Laurentides</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('shop/assets/imgs/theme/favicon.svg') }}"/>
-
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('shop/assets/css/plugins/animate.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
-
+    @yield('head')
 </head>
 
 <body>
@@ -47,7 +27,8 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- Preloader End -->
+        </div> 
+        <!-- Preloader End -->
 
         <!-- Vendor JS-->
         <script src="{{ asset('shop/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
@@ -131,6 +112,7 @@
                     },
                     success:function(data){
                         miniCart();
+                        miniCartMobile();
             
                         // console.log(data)
         
@@ -163,6 +145,8 @@
                     }
                 }); 
             } // End add to cart function
+
+            
         </script>
 
         <!-- MINI Cart Script -->
@@ -209,13 +193,14 @@
                 })
             } // End mini cart function
             miniCart();
+            miniCartMobile();
 
-            // Mini Cart Remove Function
+            // Cart Page Remove Function
             function minicartRemove(rowId){
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     dataType: 'JSON',
-                    url: "/produits/details/remove/"+rowId,
+                    url: "/produits/details/minicart/remove/"+rowId,
                     success:function(data){
                    // minicart(); // Executes the minicart method and refreshes the data from the datalisting
 
@@ -242,9 +227,16 @@
                                 title: data.error, 
                                 })
                             } // End Message 
-                        }
+                        },
+                        error: function(data) {
+                        console.log("ERROR: ", data);
+                }
                 });
-            }
+            cart();
+            miniCart();
+            miniCartMobile();
+            } // End cart page remove function
+            
             
         </script>
 
@@ -309,7 +301,7 @@
             // Cart Page Remove Function
             function cartRemove(rowId){
                 $.ajax({
-                    type: "GET",
+                    type: 'POST',
                     dataType: 'JSON',
                     url: "/produits/details/remove/"+rowId,
                     success:function(data){
@@ -343,8 +335,39 @@
                         console.log("ERROR: ", data);
                 }
                 });
+                cart();
+                miniCart();
             } // End cart page remove function
             
+            // Cart Increment function
+            function cartIncrement(rowId){
+                $.ajax({
+                    type: 'GET',
+                    url: "/increment/"+rowId,
+                    dataType: 'JSON',
+                    success:function(data){
+
+                    cart();
+                    miniCart();
+
+                    }
+                })
+            } // end cart increment
+
+            // Cart decrement function
+            function cartDecrement(rowId){
+                $.ajax({
+                    type: 'GET',
+                    url: "/decrement/"+rowId,
+                    dataType: 'JSON',
+                    success:function(data){
+
+                    cart();
+                    miniCart();
+
+                    }
+                })
+            } // end cart decrement
         </script>
 
         <!-- Add to wishlist Script -->
@@ -410,7 +433,7 @@
                             <td class="custome-checkbox pl-30">
                                 
                             </td>
-                            <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thumbnail}" alt="#" /></td>
+                            <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thumbnail}" alt="Planchers" /></td>
                             <td class="product-des product-name">
                                 <h6><a class="product-name mb-10" href="">${value.product.product_name}</a></h6>
                                 <div class="product-rate-cover">
@@ -420,13 +443,13 @@
                                     <span class="font-small ml-5 text-muted"> (4.0)</span>
                                 </div>
                             </td>
-                            <td class="price" data-title="Price">
+                            <td class="price" data-title="Prix">
                                 ${value.product.product_discount == null
                                 ? `<h3 class="text-brand">${value.product.product_price}</h3>`
                                 :`<h3 class="text-brand">${value.product.product_discount}</h3>`
                                 }
                             </td>
-                            <td class="text-center detail-info" data-title="Stock">
+                            <td class="text-center detail-info" data-title="Status">
                                 ${value.product.product_qty > 0
                                 ? `<span class="stock-status in-stock mb-0"> En Stock </span>`
                                 :`<span class="stock-status out-stock mb-0"> Hors Stock </span>`
@@ -522,6 +545,93 @@
                     }
                 })
             }
+        </script>
+
+        <!-- MOBILE MINI CART -->
+        <script type="text/javascript">
+
+            // MOBILE Mini cart function
+            function miniCartMobile(){
+
+                $.ajax({
+                    type: "GET",
+                    dataType: 'JSON',
+                    url: "/produits/details/minicart",
+                    success:function(response){
+                    // miniCart();
+                    //  console.log(response)
+
+                    $('#mcartQty').text(response.cartQty);
+                    var miniCartMobile = ""
+
+                    $.each(response.cartContent, function(key,value){
+                        miniCartMobile += `   <ul>
+                                            <li>
+                                                <div class="shopping-cart-img">
+                                                    <a><img alt="Plancher Laurentides" src="/${value.options.image}" style="width: 60px; height:60px;"/></a>
+                                                </div>
+                                                <div class="shopping-cart-title">
+                                                    <h6>${value.name}</h6>
+                                                    <h4><span>${value.qty} × </span>${value.price} $</h4>
+                                                </div>
+                                                <div class="shopping-cart-delete">
+                                                    <a type="submit" id="${value.rowId}" onclick="minicartRemove(this.id)"><i class="fi-rs-cross-small"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <br>
+                                    `
+                    });
+
+                    $('#miniCartMobile').html(miniCartMobile);
+                    } 
+                })
+            } // End mini cart function
+            miniCart();
+            miniCartMobile();
+
+            // Cart Page Remove Function
+            function minicartRemove(rowId){
+                $.ajax({
+                    type: "POST",
+                    dataType: 'JSON',
+                    url: "/produits/details/minicart/remove/"+rowId,
+                    success:function(data){
+                // minicart(); // Executes the minicart method and refreshes the data from the datalisting
+
+                        // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000 
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                            
+                            Toast.fire({
+                            type: 'success',
+                            icon: 'success', 
+                            title: data.success, 
+                            })
+
+                        }else{
+                        
+                        Toast.fire({
+                                type: 'error',
+                                icon: 'error', 
+                                title: data.error, 
+                                })
+                            } // End Message 
+                        },
+                        error: function(data) {
+                        console.log("ERROR: ", data);
+                }
+                });
+            cart();
+            miniCart();
+            miniCartMobile();
+            } // End cart page remove function
+        
         </script>
 
 </body>

@@ -85,16 +85,6 @@
                                                 <label class="form-label">Discount</label>
                                                 <input type="text" class="form-control"  name="product_discount" value="{{ $products->product_discount }}">
                                             </div>
-                                            <div class="col-md-3">
-                                                <label  class="form-label">Taxes</label>
-                                                <select class="form-select" name="product_tax" >
-                                                    <option value="{{ $products->product_tax }}">{{ $products->product_tax }}</option>
-                                                    <option value="14.975">TPS/TVQ</option>
-                                                    <option value="5">TPS</option>
-                                                    <option value="9.975">TVQ</option>
-                                                    <option value="0">Zéro</option>
-                                                </select>
-                                            </div>
                                             <span class="col-title">Product Dimensions</span>
                                             <div class="col-md-3">
                                                 <label class="form-label">Length</label>

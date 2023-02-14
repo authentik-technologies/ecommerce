@@ -7,11 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
     public function AdminDashboard(){
-        return view('admin.index');
+
+        $orders = Order::sum('amount');
+        $users = User::count('status');
+        $pending = Order::where('status','Pending')->count();
+
+        $total_orders = Order::where('status','Pending')->get();
+
+        return view('admin.index',compact('orders','users','pending','total_orders'));
     } //End Function
 
     public function AdminLogin(){

@@ -1,11 +1,33 @@
 @extends('shop.layouts.master')
+@section('head')
+<meta charset="utf-8" />
+    <title>Plancher Laurentides</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('shop/assets/imgs/theme/favicon.svg') }}"/>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/plugins/animate.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('shop/assets/css/main.css?v=5.3') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" /> 
+@endsection
 @section('shop')
 
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
             <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Accueil</a>
-            <span></span> <a href="shop-grid-right.html">{{ $product['categories']['category_name'] }}</a> <span></span> {{ $product->product_name }}
+            <span></span> <a href="{{ back() }}">{{ $product['categories']['category_name'] }}</a> <span></span> {{ $product->product_name }}
         </div>
     </div>
 </div>
@@ -96,12 +118,13 @@
                             <label for="quantity">
                                 <h6><i class="fi-rs-calculator"></i> Combien en avez-vous besoin?</h6>
                             </label>
-                            <div class="detail-extralink mb-20">
-                                <div class="detail-qty border radius">
-                                    <input type="number" name="quantity" class="qty-val" id="qty" min="1" placeholder="Saisir la quantité">
-                                </div>         
-                                <div class="detail-measurement border radius">
-                                    <input class="qty-val" style="background-color: white" placeholder="{{ $product->product_measurement }}" disabled>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="detail-extralink mb-20 mt-10">
+                                            <div class="detail-qty border radius">
+                                                <input type="number" name="quantity" class="qty-val" id="qty" min="1" placeholder="Saisir la quantité">
+                                            </div>   
+                                    </div>
                                 </div>
                             </div>
                             <div class="short-desc mb-30" id="qty-text">
@@ -405,66 +428,60 @@
                 </div>
                 <div class="row mt-60">
                     <div class="col-12">
-                        <h2 class="section-title style-1 mb-30">Produits Similaire</h2>
+                        <h2 class="section-title style-1 mb-30">Produits similaire</h2>
                     </div>
                     <div class="col-12">
-                        @foreach ($relatedProduct as $product )
-                        <div class="row related-products"> 
+                        <div class="row related-products">
+                            @foreach ($relatedProduct as $product )
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap hover-up">
                                     <div class="product-img-action-wrap">
-                                            <div class="product-img product-img-zoom">
-                                                <a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">
-                                                    <img class="default-img" src="{{ asset($product->product_thumbnail) }}" height="200px" alt="" />
-                                                    <!-- <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" /> -->
-                                                </a>
-                                          
-                                            </div>
-                                            <div class="product-action-1">
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
-                                            </div>
+                                        <div class="product-img product-img-zoom">
+                                            <a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">
+                                                <img class="default-img" src="{{ asset($product->product_thumbnail) }}" height="200px" alt="" />
+                                                <!-- <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" /> -->
+                                            </a>
+                                        </div>
 
                                         @php
                                         $amount = $product->product_price - $product->product_discount;
                                         $discount = ($amount/$product->product_price) * 100;
                                         @endphp
-
-                                            <div class="product-badges product-badges-position product-badges-mrg">
-                                                @if ($product->product_discount == NULL)
-                                                <span class="hot">Nouveau</span>
-                                                @else
-                                                    <span class="hot">Rabais {{ round($discount) }} %</span>
-                                                @endif
-                                            </div>
-                                        <div class="product-content-wrap">
-                                            <h2><a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">{{ $product->product_name }}</a></h2>
-                                            <div class="rating-result" title="90%">
-                                                <span></span>
-                                            </div>
+                                            
+                                        <div class="product-badges product-badges-position product-badges-mrg">
                                             @if ($product->product_discount == NULL)
-                                            <div class="product-price">
-                                                <span>{{ $product->product_price }} $ / {{ $product->product_measurement }}</span>
-                                            </div>
+                                            <span class="best">Bon vendeur</span>
                                             @else
-                                            <div class="product-price">
-                                                <span>{{ $product->product_discount }} $ / {{ $product->product_measurement }}</span>
-                                                <span class="old-price">{{ $product->product_price }} $</span>
-                                            </div>
+                                            <span class="sale">Rabais {{ round($discount) }} %</span>
                                             @endif
                                         </div>
+                                    </div>
+                                    <div class="product-content-wrap">
+                                        <h2><a href="{{ url('produits/details/'.$product->id.'/'.$product->product_slug) }}" tabindex="0">{{ $product->product_name }}</a></h2>
+                                        <div class="rating-result" title="90%">
+                                            <span></span>
+                                        </div>
+                                        @if ($product->product_discount == NULL)
+                                        <div class="product-price">
+                                            <span>{{ $product->product_price }} $ / {{ $product->product_measurement }}</span>
+                                        </div>
+                                        @else
+                                        <div class="product-price">
+                                            <span>{{ $product->product_discount }} $ / {{ $product->product_measurement }}</span>
+                                            <span class="old-price">{{ $product->product_price }} $</span>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                        </div>
+                        </div>   
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 @endsection
 

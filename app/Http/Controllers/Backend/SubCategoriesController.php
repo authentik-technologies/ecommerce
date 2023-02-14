@@ -70,7 +70,7 @@ class SubCategoriesController extends Controller
         return redirect()->route('admin.subcategories.index')->with($notification);
     }
 
-    public function GetSubCategories($subcategory_id){
+    public function GetSubCategories($category_id){
         $subcat = SubCategories::where('category_id',$category_id)->orderBy('subcategory_name','ASC')->get();
         return json_encode($subcat);
     }

@@ -1,8 +1,6 @@
 @extends('admin.layouts.master')
 @section('admin')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
 <div class="page-wrapper">
     <div class="page-content">
         <div class="card">
@@ -85,15 +83,6 @@
                                             <div class="col-md-3">
                                                 <label class="form-label">Discount</label>
                                                 <input type="text" class="form-control"  name="product_discount" placeholder="00.00">
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label  class="form-label">Taxes</label>
-                                                <select class="form-select" name="product_tax">
-                                                    <option></option>
-                                                    <option value="14.975">14.975%</option>
-                                                    <option value="5">5%</option>
-                                                    <option value="9.975">9.975%</option>
-                                                </select>
                                             </div>
                                             <span class="col-title">Product Dimensions</span>
                                             <div class="col-md-3">
@@ -268,7 +257,6 @@ $('select[name=category_id]').on('change', function(){
 </script>
 
 <!-- script for required fields -->
-
 <script type="text/javascript">
     $(document).ready(function(){
         $('#myForm').validate({

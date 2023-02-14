@@ -16,6 +16,12 @@ class ShopController extends Controller
 
     public function Index(){
 
+        $products = Products::where('product_status', 'active')->orderBy('id','DESC')->get();
+        $categories = Categories::orderBy('category_name','ASC')->get();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
+        $new_products = Products::orderBy('id','DESC')->limit(3)->get();
+
+        return view('shop.products.index',compact('products','categories','brands','new_products'));
 
     }
 
@@ -47,16 +53,27 @@ class ShopController extends Controller
         $products = Products::where('product_status', 'active')->where('category_id',$id)->orderBy('id','DESC')->get();
         $categories = Categories::orderBy('category_name','ASC')->get();
         $breadcrumbs = Categories::where('id',$id)->first();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
         $new_products = Products::orderBy('id','DESC')->limit(3)->get();
 
-        return view('shop.products.categories',compact('products','categories','breadcrumbs','new_products'));
+        return view('shop.products.categories',compact('products','categories','brands','breadcrumbs','new_products'));
+
+    }
+
+    public function BrandDetails(Request $request,$id,$slug){
+
+        $products = Products::where('product_status', 'active')->where('brand_id',$id)->orderBy('id','DESC')->get();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
+        $breadcrumbs = Brands::where('id',$id)->first();
+        $new_products = Products::orderBy('id','DESC')->limit(3)->get();
+
+        return view('shop.products.brands',compact('products','brands','breadcrumbs','new_products'));
 
     }
 
     public function ProductModalAjax($id){
 
         $product = Products::with('categories','brands')->findOrFail($id);
-
 
         return response::json(array(
 
@@ -66,4 +83,20 @@ class ShopController extends Controller
 
         ));
     }
+
+    public function Search(Request $request){
+
+        $request->validate(['search' => "required"]);
+
+        $item = $request->search;
+        $products = Products::where('product_name','LIKE',"%$item%")->get();
+        $categories = Categories::orderBy('category_name','ASC')->get();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
+        $new_products = Products::orderBy('id','DESC')->limit(3)->get();
+
+        return view('shop.products.search',compact('products','item','new_products','categories','brands'));
+
+    }
+
+
 }

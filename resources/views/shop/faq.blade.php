@@ -45,9 +45,7 @@
                             @foreach ($faqs as $faq )
                             <div class="single-content mb-50">
                                 <h4>{{ $faq->question }}</h4>
-                                <ol start="{{$faq->id}}">
-                                    <li>{{ $faq->answer }}</li>
-                                </ol>
+                                <p>{{ $faq->answer }}</p>
                             </div>
                             @endforeach
                         </div>

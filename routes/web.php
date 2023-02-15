@@ -66,22 +66,7 @@ Route::get('/contactez-nous', [ContactUsController::class, 'ContactForm']);
 Route::post('/contactez-nous/confirmation', [ContactUsController::class, 'ContactFormPost'])->name('contact.save');
 
 
-
-Route::get('/faq', function() {
-    return view('shop.faq');
-});
-
-Route::get('/politiques', function() {
-    return view('shop.policies');
-});
-
-Route::post('/politiques', function() {
-    return view('shop.policies');
-});
-
-
-
-// PRODUCT DETAILS ROUTE
+// SHOP PAGES & DETAILS ROUTE
 Route::controller(ShopController::class)->group(function(){
 
 Route::get('/boutique', 'Index');
@@ -91,8 +76,11 @@ Route::get('/produits/marques/{id}/{slug}' , 'BrandDetails');
 
 Route::post('/search' , 'Search')->name('shop.search');
 
-});
+// VARIOUS STATIC PAGES
+Route::get('/faq', 'FaqPage');
+Route::get('/politiques', 'PoliciesPage');
 
+});
 
 
 // PRODUCT MINI CART VIEW ROUTE

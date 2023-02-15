@@ -43,14 +43,13 @@
         <script src="{{ asset('shop/assets/js/plugins/magnific-popup.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/select2.min.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/counterup.js') }}"></script>
-        <script src="{{ asset('shop/assets/js/plugins/jquery.countdown.min.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/images-loaded.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/isotope.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/scrollup.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/jquery.vticker-min.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
         <script src="{{ asset('shop/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
-        <script src="{{ asset('shop/assets/js/plugins/leaflet.js') }}"></script>
+        
 
         <!-- Template  JS -->
         <script src="{{ asset('shop/assets/js/main.js?v=5.6') }}"></script>

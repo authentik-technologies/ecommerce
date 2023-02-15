@@ -26,8 +26,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> Pages <span></span> About us
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Accueil</a>
+            <span></span> À Propos
         </div>
     </div>
 </div>
@@ -38,102 +38,75 @@
             <div class="col-xl-10 col-lg-12 m-auto">
                 <section class="row align-items-center mb-50">
                     <div class="col-lg-6">
-                        <img src="assets/imgs/page/about-1.png" alt="" class="border-radius-15 mb-md-3 mb-lg-0 mb-sm-4">
+                        <img src="{{ ('shop/assets/imgs/page/a-propos.webp') }}" alt="" class="border-radius-15 mb-md-3 mb-lg-0 mb-sm-4">
                     </div>
                     <div class="col-lg-6">
                         <div class="pl-25">
-                            <h2 class="mb-30">Welcome to Nest</h2>
-                            <p class="mb-25">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.</p>
-                            <p class="mb-50">Ius ferri velit sanctus cu, sed at soleat accusata. Dictas prompta et Ut placerat legendos interpre.Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante Etiam sit amet orci eget. Quis commodo odio aenean sed adipiscing. Turpis massa tincidunt dui ut ornare lectus. Auctor elit sed vulputate mi sit amet. Commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.</p>
+                            <h2 class="mb-30">Plancher Laurentides</h2>
+                            <h3 class="mb-30" style="color:#e90101">Produit de haute qualité</h3>
+                            <p class="mb-25">Nous avons développé une approche afin de propulser le commerce du plancher à un autre niveau. Simplifier la vie du client, de l’entrepreneur et de l’auto constructeur. Satisfaire la clientèle. Nos experts en revêtement sont à votre service et prêts à vous aider.</p>
                             <div class="carausel-3-columns-cover position-relative">
-                                <div id="carausel-3-columns-arrows"><span class="slider-btn slider-prev slick-arrow" style=""><i class="fi-rs-arrow-small-left"></i></span><span class="slider-btn slider-next slick-arrow" style=""><i class="fi-rs-arrow-small-right"></i></span></div>
-                                <div class="carausel-3-columns slick-initialized slick-slider" id="carausel-3-columns">
-                                    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 2376px; transform: translate3d(-864px, 0px, 0px);"><img src="assets/imgs/page/about-3.png" alt="" class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-4.png" alt="" class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-2.png" alt="" class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-2.png" alt="" class="slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-3.png" alt="" class="slick-slide slick-current slick-active" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 192px;"><img src="assets/imgs/page/about-4.png" alt="" class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 192px;"><img src="assets/imgs/page/about-2.png" alt="" class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 192px;"><img src="assets/imgs/page/about-2.png" alt="" class="slick-slide slick-cloned" data-slick-index="4" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-3.png" alt="" class="slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-4.png" alt="" class="slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"><img src="assets/imgs/page/about-2.png" alt="" class="slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true" tabindex="-1" style="width: 192px;"></div></div>
-                                    
-                                    
-                                    
+                                <div id="carausel-3-columns-arrows"></div>
+                                <div class="carausel-3-columns" id="carausel-3-columns">
+                                    <img src="{{ asset('shop/assets/imgs/page/slide-1.webp') }}" alt="" />
+                                    <img src="{{ asset('shop/assets/imgs/page/slide-2.webp') }}" alt="" />
+                                    <img src="{{ asset('shop/assets/imgs/page/slide-3.webp') }}" alt="" />
+                                    <img src="{{ asset('shop/assets/imgs/page/slide-4.webp') }}" alt="" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="text-center mb-50">
-                    <h2 class="title style-3 mb-40">What We Provide?</h2>
+                    <h2 class="title style-3 mb-40">Notre service inclut ce qui suit :</h2>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-1.svg" alt="">
-                                <h4>Best Prices &amp; Offers</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-1.svg') }}" alt="">
+                                <h4>Des produits de qualité</h4>
+                                <p>Nos produits proviennent de fabricants renommés et sont sélectionnés spécialement pour vous.</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-2.svg" alt="">
-                                <h4>Wide Assortment</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-2.svg') }}" alt="">
+                                <h4>Paiement en ligne sécurisé</h4>
+                                <p>Notre plateforme de paiement en ligne est sécurisée. Nous ne stockons pas vos informations bancaires.</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-3.svg" alt="">
-                                <h4>Free Delivery</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-3.svg') }}" alt="">
+                                <h4>Des prix imbattables</h4>
+                                <p>Nos produits sélectionnés sont à des prix imbattables. Contactez un de nos représentants aujourd'hui et voyez.</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-4.svg" alt="">
-                                <h4>Easy Returns</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-4.svg') }}" alt="">
+                                <h4>Satisfaction garantie</h4>
+                                <p>Notre personnel est là pour vous. Tirez le meilleur parti de votre expérience grâce à un service clientèle de qualité.</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-5.svg" alt="">
-                                <h4>100% Satisfaction</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-5.svg') }}" alt="">
+                                <h4>Une expertise</h4>
+                                <p>Les revêtements de sol sont notre spécialité. Soyez assurés que nous vous fournirons les meilleurs conseils et des produits de qualité.</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-24">
                             <div class="featured-card">
-                                <img src="assets/imgs/theme/icons/icon-6.svg" alt="">
-                                <h4>Great Daily Deal</h4>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
-                                <a href="#">Read more</a>
+                                <img src="{{ asset('shop/assets/imgs/theme/icons/icon-6.svg') }}" alt="">
+                                <h4>Compte client</h4>
+                                <p>Access your customer account to view past orders, compare products, build a wishlist and view historical activities.</p>
+                                
                             </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="row align-items-center mb-50">
-                    <div class="row mb-50 align-items-center">
-                        <div class="col-lg-7 pr-30">
-                            <img src="assets/imgs/page/about-5.png" alt="" class="mb-md-3 mb-lg-0 mb-sm-4">
-                        </div>
-                        <div class="col-lg-5">
-                            <h4 class="mb-20 text-muted">Our performance</h4>
-                            <h1 class="heading-1 mb-40">Your Partner for e-commerce grocery solution</h1>
-                            <p class="mb-30">Ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
-                            <p>Pitatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 pr-30 mb-md-5 mb-lg-0 mb-sm-5">
-                            <h3 class="mb-30">Who we are</h3>
-                            <p>Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
-                        </div>
-                        <div class="col-lg-4 pr-30 mb-md-5 mb-lg-0 mb-sm-5">
-                            <h3 class="mb-30">Our history</h3>
-                            <p>Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3 class="mb-30">Our mission</h3>
-                            <p>Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.</p>
                         </div>
                     </div>
                 </section>
@@ -143,24 +116,24 @@
     <section class="container mb-50 d-none d-md-block">
         <div class="row about-count">
             <div class="col-lg-1-5 col-md-6 text-center mb-lg-0 mb-md-5">
-                <h1 class="heading-1"><span class="count">12</span>+</h1>
-                <h4>Glorious years</h4>
+                <h1 class="heading-1"><span class="count">100</span>+</h1>
+                <h4>Produits de qualités</h4>
             </div>
             <div class="col-lg-1-5 col-md-6 text-center">
-                <h1 class="heading-1"><span class="count">36</span>+</h1>
-                <h4>Happy clients</h4>
+                <h1 class="heading-1"><span class="count">3</span></h1>
+                <h4>Emplacements</h4>
             </div>
             <div class="col-lg-1-5 col-md-6 text-center">
-                <h1 class="heading-1"><span class="count">57</span>+</h1>
-                <h4>Projects complete</h4>
+                <h1 class="heading-1"><span class="count">6</span>+</h1>
+                <h4>Employées</h4>
             </div>
             <div class="col-lg-1-5 col-md-6 text-center">
-                <h1 class="heading-1"><span class="count">24</span>+</h1>
-                <h4>Team advisor</h4>
+                <h1 class="heading-1"><span class="count">150</span>+</h1>
+                <h4>Commandes</h4>
             </div>
             <div class="col-lg-1-5 text-center d-none d-lg-block">
-                <h1 class="heading-1"><span class="count">26</span>+</h1>
-                <h4>Products Sale</h4>
+                <h1 class="heading-1"><span class="count">100</span>%</h1>
+                <h4>Satisfaction client</h4>
             </div>
         </div>
     </section>
@@ -168,43 +141,25 @@
         <div class="row">
             <div class="col-xl-10 col-lg-12 m-auto">
                 <section class="mb-50">
-                    <h2 class="title style-3 mb-40 text-center">Our Team</h2>
                     <div class="row">
                         <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
-                            <h6 class="mb-5 text-brand">Our Team</h6>
-                            <h1 class="mb-30">Meet Our Expert Team</h1>
-                            <p class="mb-30">Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus.</p>
-                            <p class="mb-30">Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus.</p>
-                            <a href="#" class="btn">View All Members</a>
+                            <h6 class="mb-5 text-brand">Notre Équipe</h6>
+                            <h1 class="mb-30">Expertise</h1>
+                            <p class="mb-30">Notre mission est d’être constamment à l’affut des nouvelles dans le domaine du plancher. Notre mentalité a pour but de vous faciliter et simplifier l’achat de revêtement de sols. Nous sommes spécialisés dans le domaine, nos connaissance et dévouement sont incomparables.</p>
+                            <p class="mb-30">Constamment à la recherche de nouvelles innovations, Plancher Laurentides vous réserve plusieurs surprises dans le futur..</p>
+                            <!-- <a href="#" class="btn">View All Members</a> -->
                         </div>
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="team-card">
-                                        <img src="assets/imgs/page/about-6.png" alt="">
+                                        <img src="{{ asset('shop/assets/imgs/page/david.webp') }}" alt="David Fradet - PL">
                                         <div class="content text-center">
-                                            <h4 class="mb-5">H. Merinda</h4>
-                                            <span>CEO &amp; Co-Founder</span>
+                                            <h4 class="mb-5">David Fradet</h4>
+                                            <span>Président &amp; Fondateur</span>
                                             <div class="social-network mt-20">
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-brand.svg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="team-card">
-                                        <img src="assets/imgs/page/about-8.png" alt="">
-                                        <div class="content text-center">
-                                            <h4 class="mb-5">Dilan Specter</h4>
-                                            <span>Head Engineer</span>
-                                            <div class="social-network mt-20">
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-brand.svg" alt=""></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-brand.svg" alt=""></a>
+                                                <a href="https://www.facebook.com/PlancherLaurentides"><img src="{{ asset('shop/assets/imgs/theme/icons/social-fb.svg') }}" alt="Facebook Plancher Laurentides"></a>
+                                                <a href="https://www.linkedin.com/company/plancher-laurentides"><img src="{{ asset('shop/assets/imgs/theme/icons/social-lki.svg') }}" alt="LinkedIn Plancher Laurentides"></a>
                                             </div>
                                         </div>
                                     </div>

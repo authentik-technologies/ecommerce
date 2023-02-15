@@ -10,6 +10,7 @@ use App\Models\Categories;
 use App\Models\SubCategories;
 use App\Models\MultiImage;
 use App\Models\User;
+use App\Models\Faq;
 
 class ShopController extends Controller
 {
@@ -20,8 +21,28 @@ class ShopController extends Controller
         $categories = Categories::orderBy('category_name','ASC')->get();
         $brands = Brands::orderBy('brand_name','ASC')->get();
         $new_products = Products::orderBy('id','DESC')->limit(3)->get();
+        
 
         return view('shop.products.index',compact('products','categories','brands','new_products'));
+
+    }
+
+    public function FaqPage(){
+
+        $categories = Categories::orderBy('category_name','ASC')->get();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
+        $faqs = Faq::orderBy('id','ASC')->get();
+
+        return view('shop.faq',compact('categories','brands','faqs'));
+
+    }
+
+    public function PoliciesPage(){
+
+        $categories = Categories::orderBy('category_name','ASC')->get();
+        $brands = Brands::orderBy('brand_name','ASC')->get();
+
+        return view('shop.policies',compact('categories','brands'));
 
     }
 

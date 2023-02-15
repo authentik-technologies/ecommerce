@@ -80,41 +80,37 @@
                         </ul>
                     </div>
                 </div>
+                    @php
+                    $categories = App\Models\Categories::orderBy('id','ASC')->get();
+                    $brands = App\Models\Brands::orderBy('id','ASC')->limit(4)->get();
+                    @endphp
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                    <h4 class=" widget-title">Boutique</h4>
+                    <h4 class="widget-title"><a href="{{ url('/boutique') }}">Boutique</a></h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Support Center</a></li>
-                        <li><a href="#">Careers</a></li>
+                        @foreach($categories as $category)
+                        <li><a href="{{ url('produits/categories/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <h4 class="widget-title">Populaire</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">View Cart</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
-                        <li><a href="#">Help Ticket</a></li>
-                        <li><a href="#">Shipping Details</a></li>
-                        <li><a href="#">Compare products</a></li>
+                        @foreach($brands as $brand)
+                        <li><a href="{{ url('produits/marques/'.$brand->id.'/'.$brand->brand_slug) }}">{{ $brand->brand_name }}</a></li>
+                        @endforeach 
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                    <h4 class="widget-title">À Propos</h4>
+                    <h4 class="widget-title"><a href="{{ url('/a-propos') }}">À Propos</a></h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="{{ url('/a-propos') }}">Qui nous sommes</a></li>
                         <li><a href="{{ url('/contactez-nous') }}">Coordonnées</a></li>
                         <li><a href="{{ url('/faq') }}">F.A.Q</a></li>
                         <li><a href="{{ url('/politiques') }}">Politiques</a></li>
+                        <li><a href="mailto:{{ $setting->email }}">Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                    <h4 class="widget-title">À Propos</h4>
+                    <h4 class="widget-title">Mon compte</h4>
                     @auth
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <li><a href="{{ route('shop.account.details') }}">Mon Profile</a></li>

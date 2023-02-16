@@ -123,6 +123,9 @@
                                     <div class="detail-extralink mb-20 mt-10">
                                             <div class="detail-qty border radius">
                                                 <input type="number" name="quantity" class="qty-val" id="qty" min="1" placeholder="Saisir la quantité">
+                                            </div>
+                                            <div style="border: 0px solid !important; max-width:25px;" class="detail-qty">
+                                                <h5>{{ $product->product_measurement }}</h5>
                                             </div>   
                                     </div>
                                 </div>
@@ -243,7 +246,7 @@
                                         <tr class="coverage">
                                             <th>Couverture</th>
                                             <td>
-                                                <p>{{ $product->product_coverage }} pi² par {{ $product->product_measurement }}</p>
+                                                <p>{{ $product->product_coverage }} pi² par boîte</p>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -31,7 +31,7 @@
                     <p class="mb-20"><img src="{{ asset('shop/assets/imgs/page/page-404.png') }}" alt="" class="hover-up" /></p>
                     <h1 class="display-2 mb-30">Méthode non autorisé</h1>
                     <p class="font-lg text-grey-700 mb-30">
-                        Votre action rencontre des problèmes interne<br />
+                        Votre action rencontre des problèmes interne<br/>
                         Visitez l'<a href="{{ url('/') }}"><span>Accueil</span></a> ou <a href="{{ url('/contactez-nous') }}"><span>Contact us</span></a> au sujet du problème.
                     </p>
                     <div class="search-form">

@@ -59,7 +59,8 @@
                     <div class="search-style-2">
                         <form action="{{ route('shop.search') }}" method="POST">
                             @csrf
-                            <input name="search" placeholder="Faites une recherche..." />
+                            <input name="search" id="search" placeholder="Faites une recherche..." />
+                            <div id="advSearch"></div>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -78,7 +79,7 @@
                                     <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishQty">0</span>
                                 </a>
-                                <a href="{{ route('shop.wishlist') }}"><span class="lable">Favoris</span></a>
+                                <a href="{{ route('shop.wishlist') }}"><span class="lable"></span></a>
                             </div>
                             @else
                             @endauth
@@ -88,7 +89,7 @@
                                     <img alt="Nest" src="{{ asset('shop/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
-                                <a href=""><span class="lable">Panier</span></a>
+                                <a href=""><span class="lable"></span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <!-- Start Mini cart ajax function -->
                                     <div id="miniCart"> </div>
@@ -225,7 +226,7 @@
                     <div class="header-action-icon-2">
                         <a href="{{ route('shop.compare') }}">
                             <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-compare.svg') }}" />
-                            <span class="pro-count blue" id="compareQty">0</span>
+                            <span class="pro-count blue" id="compareQty-2">0</span>
                         </a>
                         <a href="{{ route('shop.compare') }}"><span class="lable"></span></a>
                     </div>
@@ -233,7 +234,7 @@
                     <div class="header-action-icon-2">
                         <a href="{{ route('shop.wishlist') }}">
                             <img class="svgInject" alt="PL" src="{{ asset('shop/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                            <span class="pro-count blue" id="wishQty">0</span>
+                            <span class="pro-count blue" id="wishQty-2">0</span>
                         </a>
                         <a href="{{ route('shop.wishlist') }}"><span class="lable">Favoris</span></a>
                     </div>
@@ -264,13 +265,37 @@
 </div>
 </header>
 
+<style>
+    #advSearch{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    function search_result_show(){
+        $("#advSearch").slideDown();
+
+    }
+
+    function search_result_hide(){
+        $("#advSearch").slideUp();
+    }
+</script>
+
 
 <!-- start MOBILE header -->
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index.html"><img src="{{ asset('shop/assets/imgs/page/logo.webp') }}"  alt="logo Plancher Laurentides" /></a>
+                <a href="{{ url('/') }}"><img src="{{ asset('shop/assets/imgs/page/logo.webp') }}"  alt="logo Plancher Laurentides" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -283,7 +308,7 @@
             <div class="mobile-search search-style-3 mobile-header-border">
                 <form action="{{ route('shop.search') }}" method="POST">
                     @csrf
-                    <input name="search" placeholder="Faites une recherche..." />
+                    <input name="search2" placeholder="Faites une recherche..." />
                 </form>
             </div>
             <div class="mobile-menu-wrap mobile-header-border">

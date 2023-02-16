@@ -119,5 +119,16 @@ class ShopController extends Controller
 
     }
 
+    public function SearchProduct(Request $request){
+
+        $request->validate(['search' => "required"]);
+
+        $item = $request->search;
+        $products = Products::where('product_name','LIKE',"%$item%")->select('product_name','product_slug','product_thumbnail','product_price','id')->limit(6)->get();
+
+        return view('shop.products.advanced-search',compact('products'));
+
+    }
+
 
 }

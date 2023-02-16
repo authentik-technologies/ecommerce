@@ -75,6 +75,7 @@ Route::get('/produits/categories/{id}/{slug}' ,'CategoryDetails');
 Route::get('/produits/marques/{id}/{slug}' , 'BrandDetails');
 
 Route::post('/search' , 'Search')->name('shop.search');
+Route::post('/search-product' , 'SearchProduct');
 
 // VARIOUS STATIC PAGES
 Route::get('/faq', 'FaqPage');
@@ -137,10 +138,12 @@ Route::middleware(['auth', 'role:user'])->group(function(){
 
     // WISHLIST CONTROLLER GROUP
     Route::controller(WishlistController::class)->group(function(){
-        // PRODUCT ADD TO WISHLISt
+
+        // PRODUCT ADD TO WISHLIST
         Route::get('/favoris', 'AllWishlist')->name('shop.wishlist');
         Route::get('/get-wishlist-products', 'GetWishlist');
         Route::get('/remove-wishlist-products/{id}', 'RemoveWishlist');
+        Route::post('/ajouter-aux-favoris/{product_id}','AddToWishlist');
 
 });
 
@@ -150,13 +153,10 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('/comparaison', 'AllCompare')->name('shop.compare');
         Route::get('/get-compare-products', 'GetCompare');
         Route::get('/remove-compare-products/{id}', 'RemoveCompare');
+        Route::post('/ajouter-pour-comparaison/{product_id}' , 'AddToCompare');
 
 });
 
-// PRODUCT ADD TO WISHLIST ROUTE
-Route::post('/ajouter-aux-favoris/{product_id}' , [WishlistController::class, 'AddToWishlist']);
-// PRODUCT ADD TO COMPARE ROUTE
-Route::post('/ajouter-pour-comparaison/{product_id}' , [CompareController::class, 'AddToCompare']);
 
 // CHECKOUT CONTROLLER GROUP
 Route::controller(StripeController::class)->group(function(){

@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class CompareController extends Controller
 {
+
+    public function AllCompare(){
+
+        return view('shop.compare');
+    } // End Function
+
     public function AddToCompare(Request $request, $product_id){
 
         if (Auth::check()){
@@ -30,11 +36,6 @@ class CompareController extends Controller
             return response()->json(['error' => 'Veuillez-vous identifier']);
 
     } // End Function
-
-    public function AllCompare(){
-
-        return view('shop.compare');
-    }
 
     public function GetCompare(){
 

@@ -1,10 +1,10 @@
 
-const site_url = "http://localhost/ecommerce/public";
+const site_url = "http://127.0.0.1:8000/";
 
 $("body").on("keyup","#search", function(){
 
 	let text = $("#search").val();
-	//console.log(text);
+	// console.log(text);
 
 	if (text.length > 0) {
 		$.ajax({
@@ -16,13 +16,13 @@ $("body").on("keyup","#search", function(){
 			},
 
 			success:function(result){
-				$("#searchProducts").html(result);
+				$("#advSearch").html(result);
 
 			}
 		}); //End Ajax
 
 	}// end if 
 
-	if (text.length < 1) $("#searchProducts").html(""); 
+	if (text.length < 1) $("#advSearch").html(""); 
 	
 });

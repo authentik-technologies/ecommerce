@@ -54,6 +54,7 @@
         <!-- Template  JS -->
         <script src="{{ asset('shop/assets/js/main.js?v=5.6') }}"></script>
         <script src="{{ asset('shop/assets/js/shop.js?v=5.6') }}"></script>
+        <script src="{{ asset('shop/assets/js/search.js') }}"></script>
 
        
 
@@ -192,7 +193,7 @@
                 })
             } // End mini cart function
             miniCart();
-            miniCartMobile();
+           // miniCartMobile();
 
             // Cart Page Remove Function
             function minicartRemove(rowId){
@@ -515,7 +516,7 @@
                     dataType: 'JSON',
                     url: "/ajouter-pour-comparaison/"+product_id,
                     success:function(data){
-                        // compare(); // Executes the wishlist method and refreshes the data from the datalisting
+                       compare(); // Executes the compare method and refreshes the data from the datalisting
 
                         // Start Message 
                         const Toast = Swal.mixin({
@@ -542,6 +543,146 @@
                             } // End Message 
 
                     }
+                })
+            }
+        </script>
+
+        <!-- Compare Datalisting Script (in the compare page)-->
+        <script type="text/javascript">
+
+            function compare(){
+                $.ajax({
+                    type: "GET",
+                    dataType: 'JSON',
+                    url: "/get-compare-products/",
+
+                    success:function(response){
+                        
+                        $('#compareQty').text(response.compareQty);
+                        $('#compareQty-2').text(response.compareQty);
+                        
+                        var rows = ""
+                        $.each(response.compare, function(key,value){
+
+                            rows += `<tr class="pr_image">
+                                        <td class="text-muted font-sm fw-600 font-heading mw-200">Image</td>
+                                        <td class="row_img"><img style="width:100px" src="/${value.product.product_thumbnail}" alt="compare-img" /></td>
+                                    </tr>
+                                    <tr class="pr_title">
+                                        <td class="text-muted font-sm fw-600 font-heading">Produit</td>
+                                        <td class="product_name">
+                                            <h6><a href="shop-product-full.html" class="text-heading">${value.product.product_name}</a></h6>
+                                        </td>
+                                    </tr>
+                                    <tr class="pr_price">
+                                        <td class="text-muted font-sm fw-600 font-heading">Prix</td>
+                                        <td class="product_price">
+                                            <h4 class="price text-brand">${value.product.product_price} par ${value.product.product_measurement}</h4>
+                                        </td>
+                                    </tr>
+                                    <tr class="description">
+                                        <td class="text-muted font-sm fw-600 font-heading">Description</td>
+                                        <td class="row_text font-xs">
+                                            ${value.product.product_shot_description == null
+                                        ? `<p class="font-sm text-muted">Aucune description</p>`
+                                        : `<p class="font-sm text-muted">${value.product.product_shot_description}</p>`
+                                        }
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="pr_stock">
+                                        <td class="text-muted font-sm fw-600 font-heading">Stock status</td>
+                                        ${value.product.product_qty > 0
+                                        ? `<td class="row_stock"><span class="stock-status in-stock mb-0">En Stock</span></td>`
+                                        : `<td class="row_stock"><span class="stock-status out-stock mb-0">Hors stock</span></td>`
+                                        }
+                                    </tr>
+                                    <tr class="pr_weight">
+                                        <td class="text-muted font-sm fw-600 font-heading">Poids</td>
+                                        ${value.product.product_weight == null
+                                        ? `<td class="row_weight">N/A</td>`
+                                        : `<td class="row_weight">${value.product.product_weight}</td>`
+                                        }
+                                        
+                                    </tr>
+                                    <tr class="pr_weight">
+                                        <td class="text-muted font-sm fw-600 font-heading">Hauteur</td>
+                                        ${value.product.product_heigth == null
+                                        ? `<td class="row_weight">N/A</td>`
+                                        : `<td class="row_weight">${value.product.product_heigth}</td>`
+                                        }
+                                    </tr>
+                                    <tr class="pr_weight">
+                                        <td class="text-muted font-sm fw-600 font-heading">Longeur</td>
+                                        ${value.product.product_lenght == null
+                                        ? `<td class="row_weight">N/A</td>`
+                                        : `<td class="row_weight">${value.product.product_lenght}</td>`
+                                        }
+                                    </tr>
+                                    <tr class="pr_weight">
+                                        <td class="text-muted font-sm fw-600 font-heading">Largeur</td>
+                                        ${value.product.product_width == null
+                                        ? `<td class="row_weight">N/A</td>`
+                                        : `<td class="row_weight">${value.product.product_widtht}</td>`
+                                        }
+                                    </tr>
+                                    <tr class="pr_dimensions">
+                                        <td class="text-muted font-sm fw-600 font-heading">Couverture</td>
+                                        ${value.product.product_coverage == null
+                                        ? `<td class="row_weight">N/A</td>`
+                                        : `<td class="row_weight">${value.product.product_coverage}</td>`
+                                        }
+                                    </tr>
+                                    <tr class="pr_remove text-muted">
+                                        <td class="text-muted font-md fw-600"></td>
+                                        <td class="row_remove">
+                                            <a type="submit" id="${value.id}" onclick="compareRemove(this.id)" class="text-muted"><i class="fi-rs-trash mr-5"></i><span>Supprimer</span> </a>
+                                        </td>
+                                    </tr>`
+            });
+
+            $('#compare').html(rows);
+                            }
+                        })
+                    }
+
+            compare(); // End Compare Datalisting function
+
+        
+            // Compare remove product from data listing
+            function compareRemove(id){
+                $.ajax({
+                    type: "GET",
+                    dataType: 'JSON',
+                    url: "/remove-compare-products/"+id,
+
+                    success:function(data){
+                    compare(); // Executes the compare method and refreshes the data from the datalisting
+
+                        // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000 
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                            
+                            Toast.fire({
+                            type: 'success',
+                            icon: 'success', 
+                            title: data.success, 
+                            })
+
+                        }else{
+                        
+                        Toast.fire({
+                                type: 'error',
+                                icon: 'error', 
+                                title: data.error, 
+                                })
+                            } // End Message 
+                        }
                 })
             }
         </script>

@@ -22,10 +22,12 @@ class CheckoutController extends Controller
                 $cartContent = Cart::content();
                 $cartQty = Cart::count();
                 $cartSubTotal = Cart::subtotal();
-                $cartTax = Cart::tax();
-                $cartTotal = Cart::total(); 
+                $cartTaxTPS = number_format($cartSubTotal*0.05, 2,".",",");
+                $cartTaxTVQ = number_format($cartSubTotal*0.0975, 2,".",",");
+                $cartTaxTotal = number_format($cartTaxTPS+$cartTaxTVQ, 2,".",",");
+                $cartTotal = number_format($cartSubTotal+$cartTaxTotal, 2,".",","); 
 
-                return view('shop.checkout', compact('cartContent','cartQty','cartSubTotal','cartTax','cartTotal'));
+                return view('shop.checkout', compact('cartContent','cartQty','cartSubTotal','cartTaxTPS','cartTaxTVQ','cartTotal'));
 
 
             }else{
@@ -94,9 +96,12 @@ class CheckoutController extends Controller
         $data['shipping_city'] = $request->shipping_city;
         $data['shipping_postal'] = $request->shipping_postal;
 
-        $cartTotal = Cart::total();
+        
         $cartSubTotal = Cart::subtotal();
-        $cartTax = Cart::tax();
+        $cartTaxTPS = number_format($cartSubTotal*0.05, 2,".",",");
+        $cartTaxTVQ = number_format($cartSubTotal*0.0975, 2,".",",");
+        $cartTax = number_format($cartTaxTPS+$cartTaxTVQ, 2,".",",");
+        $cartTotal = number_format($cartSubTotal+$cartTaxTotal, 2,".",",");
         
         
 

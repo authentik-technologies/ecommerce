@@ -1,132 +1,107 @@
-<!DOCTYPE html>
-<html class="no-js" lang="fr_CA">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="shop/assets/imgs/page/logo.webp" />
-    <link rel="stylesheet" href="https://staging.atk.today/shop/assets/css/main.css?v=5.6" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
 </head>
+<body style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; background-color: #ffffff; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important;">
+<style>
+@media  only screen and (max-width: 600px) {
+.inner-body {
+width: 100% !important;
+}
 
-<body>
-    <div class="invoice invoice-content invoice-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="invoice-inner">
-                        <div class="invoice-info" id="invoice_wrapper">
-                            <div class="invoice-header">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="invoice-numb">
-                                            <h4 class="invoice-header-1 mb-10 mt-20"># Facture: <span class="text-brand"></span></h4>
-                                            <h6 class="">Date: </h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="invoice-name text-end">
-                                            <div class="logo">
-                                                <a href="index.html"><img src="shop/assets/imgs/page/logo.webp" alt="logo" /></a>
-                                                <p class="text-sm text-mutted">2200 Boulevard Sainte-Sophie <br> SAINTE-SOPHIE QUEBEC J5J 2P5</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-top">
-                                <div class="row">
-                                    <div class="col-lg-9 col-md-6">
-                                        <div class="invoice-number">
-                                            <h4 class="invoice-title-1 mb-10">Livraison</h4>
-                                            <p class="invoice-addr-1">
-                                                <strong></strong> <br />
-                                                 <br />
-                                                  <br />
-                                                
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="invoice-number">
-                                            <h4 class="invoice-title-1 mb-10">Facturation</h4>
-                                            <p class="invoice-addr-1">
-                                                <strong></strong> <br />
-                                                
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-lg-3 col-md-6">
-                                        <h4 class="invoice-title-1 mb-10">Méthode de paiement</h4>
-                                        <p class="invoice-from-1">Carte de crédit</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-center">
-                                <div class="table-responsive">
-                                    <table class="table table-striped invoice-table">
-                                            <tr>
-                                                <td colspan="3" class="text-end f-w-600">SubTotal</td>
-                                                <td class="text-right">$1710.99</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="text-end f-w-600">Tax</td>
-                                                <td class="text-right">$85.99</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="text-end f-w-600">Grand Total</td>
-                                                <td class="text-right f-w-600">$1795.99</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="invoice-bottom">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div>
-                                            <h3 class="invoice-title-1">Important Note</h3>
-                                            <ul class="important-notes-list-1">
-                                                <li>All amounts shown on this invoice are in US dollars</li>
-                                                <li>finance charge of 1.5% will be made on unpaid balances after 30 days.</li>
-                                                <li>Once order done, money can't refund</li>
-                                                <li>Delivery might delay due to some external dependency</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-offsite">
-                                        <div class="text-end">
-                                            <p class="mb-0 text-13">Thank you for your business</p>
-                                            <p><strong>AliThemes JSC</strong></p>
-                                            <div class="mobile-social-icon mt-50 print-hide">
-                                                <h6>Follow Us</h6>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="" /></a>
-                                                <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="invoice-btn-section clearfix d-print-none">
-                            <a href="javascript:window.print()" class="btn btn-lg btn-custom btn-print hover-up"> <img src="shop/assets/imgs/theme/icons/icon-print.svg" alt="" /> Print </a>
-                            <a id="invoice_download_btn" class="btn btn-lg btn-custom btn-download hover-up"> <img src="shop/assets/imgs/theme/icons/icon-download.svg" alt="" /> Download </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Vendor JS-->
-    <script src="https://staging.atk.today/shop/assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="https://staging.atk.today/shop/assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <!-- Invoice JS -->
-    <script src="https://staging.atk.today/shop/assets/js/invoice/jspdf.min.js"></script>
-    <script src="https://staging.atk.today/shop/assets/js/invoice/invoice.js"></script>
+.footer {
+width: 100% !important;
+}
+}
+
+@media  only screen and (max-width: 500px) {
+.button {
+width: 100% !important;
+}
+}
+</style>
+
+<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; margin: 0; padding: 0; width: 100%;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 0; padding: 0; width: 100%;">
+            <tr>
+                <td class="header" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
+                <a href="https://plancherlaurentides.com/" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
+                <img src="https://plancherlaurentides.com/shop/assets/imgs/page/logo.webp" class="logo" alt="Plancher Laurentides" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 75px; width: 75px;">
+                </a>
+                </td>
+            </tr>
+
+<!-- Email Body -->
+<tr>
+<td class="body" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; border-bottom: 1px solid #edf2f7; border-top: 1px solid #edf2f7; margin: 0; padding: 0; width: 100%;">
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; background-color: #ffffff; border-color: #e8e5ef; border-radius: 2px; border-width: 1px; box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015); margin: 0 auto; padding: 0; width: 570px;">
+<!-- Body content -->
+<tr>
+<td class="content-cell" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
+<h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">Bonjour !</h1>
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Voici votre reçu pour achat éffectué via Plancher Laurentides. Votre facture est disponible sur votre portail client.</p>
+<table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+ 
+</td>
+
+<td> # de Facture : {{ $order['invoice_no'] }}</td>
+<td> Montant : {{ $order['amount'] }}</td>
+<td> Nom : {{ $order['name'] }}</td>
+<td> Courriel : {{ $order['email'] }}</td>
+
+</tr>
+
+
+
+
+
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+ 
+ 
+
+
+ 
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; margin: 0 auto; padding: 0; text-align: center; width: 570px;">
+<tr>
+<td class="content-cell" align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; font-size: 12px; text-align: center;">© 2021 Plancher Laurentides. All rights reserved.</p>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
 </body>
-
 </html>

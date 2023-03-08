@@ -119,10 +119,18 @@
                             </tr>
                             <tr>
                                 <td class="cart_total_label">
-                                    <h6 class="text-muted">TPS/TVQ (14.975%)</h6>
+                                    <h6 class="text-muted">TPS (5%)</h6>
                                 </td>
                                 <td class="cart_total_amount">
-                                    <h5 class="text-brand text-end" id="cartTax"></h5>
+                                    <h5 class="text-brand text-end" id="cartTaxTPS"></h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="cart_total_label">
+                                    <h6 class="text-muted">TVQ (9.975%)</h6>
+                                </td>
+                                <td class="cart_total_amount">
+                                    <h5 class="text-brand text-end" id="cartTaxTVQ"></h5>
                                 </td>
                             </tr>
                             <tr>

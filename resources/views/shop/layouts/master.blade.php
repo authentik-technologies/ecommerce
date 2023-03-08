@@ -256,7 +256,8 @@
 
                        $('#cartQty2').text(response.cartQty);
                        $('#cartSubTotal').text(response.cartSubTotal);
-                       $('#cartTax').text(response.cartTax);
+                       $('#cartTaxTPS').text(response.cartTaxTPS);
+                       $('#cartTaxTVQ').text(response.cartTaxTVQ);
                        $('#cartTotal').text(response.cartTotal);
 
 

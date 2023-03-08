@@ -59,7 +59,8 @@ class UserDashboardController extends Controller
     } // End Function
 
     public function UserPassword(){
-
+        $id = Auth::user()->id;
+        $userData = User::find($id);
         return view('shop.account.password',compact('userData'));
     } // End Function
 

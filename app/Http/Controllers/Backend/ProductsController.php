@@ -40,7 +40,7 @@ class ProductsController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace(' ', '-',$request->product_name)),
+            'product_slug' => strtolower(str_replace([' ', '/'],'-',$request->product_name)),
 
             'product_sku' => $request->product_sku,
             'product_qty' => $request->product_qty,
@@ -120,7 +120,7 @@ class ProductsController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'product_name' => $request->product_name,
-            'product_slug' => strtolower(str_replace(' ', '-',$request->product_name)),
+            'product_slug' => strtolower(str_replace([' ', '/'],'-',$request->product_name)),
 
             'product_sku' => $request->product_sku,
             'product_qty' => $request->product_qty,

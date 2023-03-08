@@ -60,7 +60,7 @@ class CartController extends Controller
         $cartQty = Cart::count();
         $cartSubTotal = Cart::subtotal();
         $cartTax = Cart::tax();
-        $cartTotal = Cart::total();
+        $cartTotal = $cartSubTotal*1.14975/100;
 
         return response()->json([
             'cartContent' => $cartContent,
@@ -96,14 +96,16 @@ class CartController extends Controller
         $cartContent = Cart::content();
         $cartQty2 = Cart::count();
         $cartSubTotal = Cart::subtotal();
-        $cartTax = Cart::tax();
-        $cartTotal = Cart::total();
+        $cartTaxTPS = number_format($cartSubTotal*0.05, 2,".",",");
+        $cartTaxTVQ = number_format($cartSubTotal*0.0975, 2,".",",");
+        $cartTotal = $cartSubTotal*1.14975/100;
 
         return response()->json([
             'cartContent' => $cartContent,
             'cartQty2' => $cartQty2,
             'cartSubTotal' => $cartSubTotal,
-            'cartTax' => $cartTax,
+            'cartTaxTPS' => $cartTaxTPS,
+            'cartTaxTVQ' => $cartTaxTVQ,
             'cartTotal' => $cartTotal,
         ]);
     }// End Method

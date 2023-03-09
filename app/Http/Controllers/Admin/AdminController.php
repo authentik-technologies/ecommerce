@@ -42,13 +42,12 @@ class AdminController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address;
+        $data->billing_address = $request->billing_address;
         
         if  ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/admin_img/'.$data->photo));
             $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_img/'),$filename);
+            $file->move(('upload/admin_img/'),$filename);
             $data['photo'] = $filename;
         }
 

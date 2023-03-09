@@ -122,7 +122,8 @@
                                 <div class="column">
                                     <div class="detail-extralink mb-20 mt-10">
                                             <div class="detail-qty border radius">
-                                                <input type="number" name="quantity" class="qty-val" id="qty" min="1" placeholder="Saisir la quantité">
+                                                <input type="number" min="200" name="quantity" class="qty-val" id="qty" placeholder="Saisir la quantité" required>
+                                                <span class="validity"></span>
                                             </div>
                                             <div style="border: 0px solid !important; max-width:25px;" class="detail-qty">
                                                 <h5>{{ $product->product_measurement }}</h5>
